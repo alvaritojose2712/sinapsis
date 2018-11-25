@@ -206,7 +206,7 @@
 					hrs_diurnas:"",
 					hrs_nocturnas:"",
 					hrs_feriadas:"",
-					hrs_feriadas_nocturnas:"",
+					hrs_feriadas_nocturnas:""
 				},
 				mounted(){
 					this.api()

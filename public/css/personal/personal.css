@@ -1,0 +1,10 @@
+.panel-left{
+  background-color: #2e3236; 
+}
+.ball{
+  background-color: #17d4ab;
+  width: 100px;
+  height:100px;
+  border-radius:50px;
+  position: absolute;
+}

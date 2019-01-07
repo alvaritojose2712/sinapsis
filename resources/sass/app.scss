@@ -1,14 +1,15 @@
 
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
+@font-face {
+   font-family: 'Nunito';
+   src: url("../fonts/Nunito-Regular.ttf") format("truetype");
+}
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+@import '../css/loaders.css/loaders.min.css';
+@import '../css/custom.css';
+
+@import 'node_modules/font-awesome/scss/font-awesome.scss';

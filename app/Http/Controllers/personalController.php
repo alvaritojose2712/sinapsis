@@ -4,6 +4,8 @@ namespace sinapsis\Http\Controllers;
 
 use Illuminate\Http\Request;
 use sinapsis\personal;
+use Illuminate\Support\Facades\Blade;
+
 
 class personalController extends Controller
 {
@@ -14,7 +16,11 @@ class personalController extends Controller
      */
     public function index()
     {
-        return response(personal::all());
+        $personas = personal::all();
+        foreach ($personas as $persona) {
+            $persona->hijos = personal::find($persona->id)->hijos;
+        }
+        return $personas;
     }
 
     /**
@@ -35,7 +41,14 @@ class personalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            personal::create($request->all());
+            return "¡Se ha insertado con éxito!";
+        }catch(\Exception $e){
+           // do task when error
+           return response($e->getMessage(),200);
+        }
+         
     }
 
     /**
@@ -46,7 +59,16 @@ class personalController extends Controller
      */
     public function show($id)
     {
-        return personal::find($id);
+        $personas =  personal::where("cedula","LIKE","$id%")
+            ->orWhere("nombre","LIKE","$id%")
+            ->orWhere("apellido","LIKE","$id%")
+            ->get();
+        foreach ($personas as $persona) {
+            $persona->hijos = personal::find($persona->id)->hijos;
+        }
+        return $personas;
+
+        
     }
 
     /**
@@ -57,7 +79,8 @@ class personalController extends Controller
      */
     public function edit($id)
     {
-        //
+        return View::make('nerds.edit')
+            ->with('user', personal::find($id));
     }
 
     /**
@@ -80,6 +103,7 @@ class personalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        personal::find($id)->delete();
+        return back();
     }
 }

@@ -1,0 +1,9 @@
+.card-replegada .card-body{
+	opacity:0;
+	height: 0px;
+	display: none;
+	transition: 1s;
+}
+.card-replegada{
+	opacity: 0.5;
+}

@@ -11,7 +11,19 @@
 |
 */
 
-Route::resource('/personalController', "personalController");
-Route::get('/personal', function(){
-    return view("personal.index");
+Route::resource('/recursoshumanos/personalController', "personalController");
+Route::resource('/recursoshumanos/hijos_personal', "hijos_personal");
+Route::get('/recursoshumanos/personal', function(){
+    return view("recursos_humanos.personal.index");
 });
+
+
+Route::get('/presupuesto/ordinario', function(){
+    return view("presupuesto.ordinario");
+});
+Route::resource('/presupuesto/partidas', "partidasController");
+Route::resource('/presupuesto/acciones_especificas', "Acciones_especificasController");
+Route::resource('/presupuesto/movimientos_presupuestarios', "Movimientos_presupuestariosController");
+
+
+

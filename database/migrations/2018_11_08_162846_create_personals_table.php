@@ -14,6 +14,7 @@ class CreatePersonalsTable extends Migration
     public function up()
     {
         Schema::create('personals', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string("nombre");
             $table->string("apellido");
@@ -23,7 +24,7 @@ class CreatePersonalsTable extends Migration
             $table->string("fecha_nacimiento");
             $table->string("telefono_1");
             $table->string("telefono_2");
-            $table->string("correo");
+            $table->string("correo")->unique();
             $table->string("categoria");
             $table->string("cargo");
             $table->string("dedicacion");

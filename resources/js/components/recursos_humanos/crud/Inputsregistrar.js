@@ -1,52 +1,107 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { getValoresGlobales ,editUserInputs } from './actions/busquedaActions';
 
-
-export default class Inputsregistrar extends Component{
+class Inputsregistrar extends Component{
 	constructor(){
 		super();
-		this.state = {
-			valores_globales:{},
-			categoriaSelect:"",
-			editUser:{},
-			
-		}
-		this.valoresApropiados = this.valoresApropiados.bind(this)
-
+		this.onChange = this.onChange.bind(this)
+		this.onChangeHijos = this.onChangeHijos.bind(this)
+		this.removeHijo = this.removeHijo.bind(this)
+		this.addNewHijo = this.addNewHijo.bind(this)
+		this.editHijo = this.editHijo.bind(this)
+		this.cancelEditHijo = this.cancelEditHijo.bind(this)
 	};
 	componentWillMount(){
-		axios.get("/valores_globales.json")
-		.then(res=>{
-			this.setState({valores_globales:res.data})
+		this.props.getValoresGlobales()
+	}
+	componentDidMount(){
+		const {personals,persona,editUserInputs} = this.props
+		if (persona!==null) editUserInputs(personals[persona])
+	}
+	onChange(e){
+		this.props.editUserInputs({
+			type:"onChangeInputs",
+			data:{...e}
 		})
-		.catch(err=>{console.log(err)})
-		if (this.props.User) {
-			this.setState({
-				editUser: this.props.User 
-			});
-		}
 	}
-	valoresApropiados(e){
-		this.setState({categoriaSelect:e.target.value});
+	addNewHijo(){
+		this.props.editUserInputs({
+			type: "addHijos",
+			dataHijos: {
+				genero_hijo: "",
+				nombres_apellidos_hijo: "",
+				fecha_nacimiento_hijo: "",
+				estudiante_hijo: "",
+				discapacidad_hijo: "",
+				type: "insert",
+			}
+		})
 	}
-
+	removeHijo(index){
+		this.props.editUserInputs({
+			type: "removeHijos",
+			dataHijos: index
+		})
+	}
+	removeHijosExit(index){
+		if (window.confirm("Confirme eliminación de carga familiar...")) {
+			this.props.editUserInputs({
+				type: "removeHijosExit",
+				index: index
+			})
+		} 
+	}
+	cancelRemoveHijosExit(index){
+		this.props.editUserInputs({
+			type: "cancelRemoveHijosExit",
+			index: index
+		})
+	}
+	onChangeHijos(index, {target:{value,name}}){
+		this.props.editUserInputs({
+			type: "modificarHijos",
+			dataHijos: {
+				name:name,
+				value:value,
+				index:index
+			}
+		})
+	}
+	editHijo(index){
+		this.props.editUserInputs({
+			type: "modoEditHijos",
+			dataHijos: {
+				index:index,
+				accion:"update"
+			}
+		})
+	}
+	cancelEditHijo(index){
+		this.props.editUserInputs({
+			type: "cancelEditHijos",
+			dataHijos: {
+				index:index,
+				accion:"modify"
+			}
+		})
+	}
 	render(){
-		let iterador = (obj,select="")=>obj?obj.map((e,i)=><option key={i} defaultValue={e} selected={select==e}>{e}</option>):null
+		let iterador = (arr) => {
+		  	if(arr&&!Array.isArray(arr)) arr = Object.keys(arr)
+		    return arr?arr.map((e,i)=><option key={i} value={e}>{e}</option>):null
+		}
 		
-		const {valores_globales,categoriaSelect,editUser} = this.state
-		const {categoria,grado_instruccion,estado,estatus,nacionalidad,genero,profesion,departamento_adscrito,cargo_desempeñado_departamento} = valores_globales
+		const {editUser,valores_globales} = this.props
+		
+		const {categoria_vg,grado_instruccion_vg,estado_vg,estatus_vg,nacionalidad_vg,profesion_vg,departamento_adscrito_vg,cargo_desempeñado_departamento_vg} = valores_globales
 
-		let {
-			id,
-			nombre,
+		const form_class = "form-control form-control-lg"
+		
+		let {nombre,
 			apellido,
-			//nacionalidad,
 			cedula,
-			//estado,
-			//estatus,
-			//categoria,
-			cargo,
-			dedicacion,
-			//genero,
+			genero,
 			fecha_nacimiento,
 			telefono_1,
 			telefono_2,
@@ -55,24 +110,22 @@ export default class Inputsregistrar extends Component{
 			fecha_ingreso,
 			antiguedad_otros_ieu,
 			caja_ahorro,
-			//grado_instruccion,
-			//profesion,
-			//departamento_adscrito,
-			//cargo_desempeñado_departamento,
 			hrs_diurnas,
 			hrs_nocturnas,
 			hrs_feriadas,
 			hrs_feriadas_nocturnas,
+			nacionalidad,
+			estado,
+			estatus,
+			categoria,
+			cargo,
+			dedicacion,
+			grado_instruccion,
+			profesion,
+			departamento_adscrito,
+			cargo_desempeñado_departamento,
+			hijos,
 		} = editUser
-		let nacionalidad_default = editUser.nacionalidad
-		let estado_default = editUser.estado
-		let estatus_default = editUser.estatus
-		let categoria_default = editUser.categoria
-		let genero_default = editUser.genero
-		let grado_instruccion_default = editUser.grado_instruccion
-		let profesion_default = editUser.profesion
-		let departamento_adscrito_default = editUser.departamento_adscrito
-		let cargo_desempeñado_departamento_default = editUser.cargo_desempeñado_departamento
 		
 		return(
 			<div className="container-fluid table-responsive">
@@ -80,198 +133,490 @@ export default class Inputsregistrar extends Component{
 					<div className="col">
 					  	<div className="form-group">
 					    	<label htmlFor="nombre">Nombres</label>
-					    	<input required type="text" maxLength="30" className="form-control form-control-lg" name="nombre" 
-					    	defaultValue={nombre?nombre:""} 
-					    	placeholder="Introduzca primer y segundo nombre"/>
+					    	<input 
+					    	type="text" 
+					    	maxLength="30" 
+					    	className={form_class} 
+					    	name="nombre" 
+					    	value={nombre} 
+					    	onChange={this.onChange}
+					    	placeholder="Introduzca primer y segundo nombre" required/>
 					  	</div>
 					  	<div className="form-group">
 					    	<label htmlFor="apellido">Apellidos</label>
-					   	 	<input required type="text" className="form-control form-control-lg" maxLength="30" name="apellido" 
-					   	 	defaultValue={apellido?apellido:""} 
-					   	 	placeholder="Introduzca ambos apellidos"/>
+					   	 	<input 
+					   	 	type="text" 
+					   	 	className={form_class} 
+					   	 	maxLength="30" 
+					   	 	name="apellido" 
+					   	 	value={apellido} 
+					   	 	onChange={this.onChange}
+					   	 	placeholder="Introduzca ambos apellidos" required/>
 					  	</div>
 					  	<hr/>
 					  	<div className="form-group">
 						    <label htmlFor="cedula">Cédula de identidad</label>
-						    <input required type="text" className="form-control form-control-lg" name="cedula" 
-						    defaultValue={cedula?cedula:""} 
-						    placeholder="Cédula de identidad" maxLength="8"/>
+						    <input 
+						    type="text" 
+						    className={form_class} 
+						    name="cedula" 
+						    value={cedula}
+						    onChange={this.onChange}
+						    placeholder="Cédula de identidad" maxLength="8" required/>
 						</div>
 						 
 						 <div className="form-group">
 					  		<label htmlFor="nacionalidad">Nacionalidad</label>
-						  	 <select className="form-control form-control-lg" name="nacionalidad">
-							   {iterador(nacionalidad,nacionalidad_default)}
+						  	 <select 
+						  	 	className={form_class} 
+						  	 	name="nacionalidad" 
+						  	 	value={nacionalidad}
+						  	 	onChange={this.onChange}>
+							  	<option></option>
+							    {iterador(nacionalidad_vg)}
 							</select>
 					  	</div>
 					  	<hr/>
 						<div className="form-group">
 						    <label htmlFor="genero">Género</label>
-						  	 <select className="form-control form-control-lg" name="genero">
-							   {iterador(genero,genero_default)}
+						  	 <select 
+						  	 	className={form_class} 
+						  	 	name="genero"
+						  	 	value={genero}
+						  	 	onChange={this.onChange}>
+						  	   <option></option>
+							   <option value="Masculino">Masculino</option>
+							   <option value="Femenino">Femenino</option>
+							   <option value="Otro">Otro</option>
 							</select>
 						</div>
 
 						<div className="form-group">
 						    <label htmlFor="fecha_nacimiento">Fecha de nacimiento</label>
-						    <input required type="date" maxLength="10" className="form-control form-control-lg" placeholder="Fecha de nacimiento" name="fecha_nacimiento" defaultValue={fecha_nacimiento?fecha_nacimiento:""} min="1930-01-01"  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
+						    <input 
+						    type="date" 
+						    maxLength="10" 
+						    className={form_class} 
+						    placeholder="Fecha de nacimiento" 
+						    name="fecha_nacimiento"  
+						    value={fecha_nacimiento} 
+						    onChange={this.onChange}
+						    min="1930-01-01" 
+						    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" 
+						    required/>
 						</div>
 						<hr/>
 					  	<div className="form-group">
 						    <label htmlFor="telefono_1">Teléfono móvil</label>
-						    <input required type="text" maxLength="15" className="form-control form-control-lg" name="telefono_1" defaultValue={telefono_1?telefono_1:""}/>
+						    <input 
+						    type="text" 
+						    maxLength="15" 
+						    className={form_class} 
+						    name="telefono_1" 
+						    value={telefono_1} 
+						    onChange={this.onChange}
+						    required/>
 						</div>
 
 						<div className="form-group">
 						    <label htmlFor="telefono_2">Teléfono de casa</label>
-						    <input required type="text" maxLength="15" className="form-control form-control-lg" name="telefono_2" defaultValue={telefono_2?telefono_2:""}/>
+						    <input 
+						    type="text" 
+						    maxLength="15" 
+						    className={form_class} 
+						    name="telefono_2" 
+						    value={telefono_2} 
+						    onChange={this.onChange}
+						    required/>
 						</div>
 						<hr/>
 						<div className="form-group">
 					    	<label htmlFor="correo">Dirección de correo electrónico</label>
-					    	<input required type="email" maxLength="30" className="form-control form-control-lg" name="correo" defaultValue={correo?correo:""} placeholder="Correo electrónico"/>
+					    	<input 
+					    	type="email" 
+					    	maxLength="30" 
+					    	className={form_class} 
+					    	name="correo"  
+					    	value={correo}
+					    	onChange={this.onChange}
+					    	placeholder="Correo electrónico" 
+					    	required/>
 					    	
 					 	</div>
 					 	<div className="form-group">
 						    <label htmlFor="cuenta_bancaria">Cuenta bancaria</label>
-						    <input required type="text" className="form-control form-control-lg" placeholder="Número de cuenta bancaria" maxLength="99" name="cuenta_bancaria" defaultValue={cuenta_bancaria?cuenta_bancaria:""}/>
+						    <input 
+						    type="text" 
+						    className={form_class} 
+						    placeholder="Número de cuenta bancaria" 
+						    maxLength="99" 
+						    name="cuenta_bancaria" 
+						    value={cuenta_bancaria}
+						    onChange={this.onChange} 
+						    required/>
 						</div>
 						<div className="form-group">
 						    <label htmlFor="profesion">Profesión</label>
-						  	 <select className="form-control form-control-lg" name="profesion">
-						  	 	<option> -Seleccione- </option>
-							    {iterador(profesion,profesion_default)}
+						  	 <select 
+						  	 	className={form_class} 
+						  	 	name="profesion"  
+								onChange={this.onChange}
+						  		value={profesion}>
+						  	 	<option></option>
+							    {iterador(profesion_vg)}
 							</select>
 						</div>
 						<div className="form-group">
 						    <label htmlFor="departamento_adscrito">Departamento adscrito</label>
-						  	 <select className="form-control form-control-lg" name="departamento_adscrito">
-						  	 	<option> -Seleccione- </option>
-							    {iterador(departamento_adscrito,departamento_adscrito_default)}
+						  	 <select 
+						  	 	className={form_class} 
+						  	 	name="departamento_adscrito"
+						  	    onChange={this.onChange}
+						  	    value={departamento_adscrito}>
+						  	 	<option></option>
+							    {iterador(departamento_adscrito_vg)}
 							</select>
 						</div>
 
 						<div className="form-group">
 						    <label htmlFor="cargo_desempeñado_departamento">Cargo desempeñado en el departamento</label>
-						  	 <select className="form-control form-control-lg" name="cargo_desempeñado_departamento">
-						  	 	<option> -Seleccione- </option>
-							    {iterador(cargo_desempeñado_departamento,cargo_desempeñado_departamento_default)}
+						  	 <select 
+						  	 	className={form_class} 
+						  	 	name="cargo_desempeñado_departamento"
+						  	    onChange={this.onChange}
+						  	    value={cargo_desempeñado_departamento}>
+						  	 	<option></option>
+							    {iterador(cargo_desempeñado_departamento_vg)}
 							</select>
 						</div>
 					</div>
 				  	<div className="col">
 						  	<div className="form-group">
 						    	<label htmlFor="estado">Estado</label>
-							  	 <select className="form-control form-control-lg" name="estado">
-							  	 	<option> -Seleccione- </option>
-								    {iterador(estado,estado_default)}
+							  	 <select 
+							  	 	className={form_class} 
+							  	 	name="estado" 
+						  	     	onChange={this.onChange}
+							  	 	value={estado}>
+							  	 	<option></option>
+								    {iterador(estado_vg)}
 								</select>
 						  	</div>
 						  	<div className="form-group">
 						  		<label htmlFor="estatus">Estatus</label>
-							  	 <select className="form-control form-control-lg" name="estatus">
-							  	 	<option> -Seleccione- </option>
-								    {iterador(estatus,estatus_default)}
+							  	 <select 
+							  	 	className={form_class} 
+							  	 	name="estatus" 
+						  	     	onChange={this.onChange}
+							  	 	value={estatus}>
+							  	 	<option></option>
+								    {iterador(estatus_vg)}
 								</select>
 						  	</div>
 						  	<div className="form-group">
 							    <label htmlFor="grado_instruccion">Grado de intrucción</label>
-							  	 <select className="form-control form-control-lg" name="grado_instruccion">
-							  	 	<option> -Seleccione- </option>
-								    {iterador(grado_instruccion,grado_instruccion_default)}
+							  	 <select 
+							  	 	className={form_class} 
+							  	 	name="grado_instruccion" 
+						  	     	onChange={this.onChange}
+							  	 	value={grado_instruccion}>
+							  	 	<option></option>
+								    {iterador(grado_instruccion_vg)}
 								</select>
 							</div>
 						  	<div className="form-group">
 							    <label htmlFor="categoria">Categoría</label>
-							  	 <select onChange={this.valoresApropiados} className="form-control form-control-lg" name="categoria">
-							  	 	<option> -Seleccione- </option>
-								    {
-								   	 categoria?Object.keys(categoria)
-								   	 .map((e,i)=><option key={i} value={e}>{e}</option>):null
-								    }
+							  	 <select 
+							  	 	className={form_class} 
+							  	 	name="categoria" 
+						  	     	onChange={this.onChange}
+							  	 	value={categoria}>
+							  	 	<option></option>
+								     {iterador(categoria_vg)}
 								</select>
 							</div>
 
 							<div className="form-group">
 							    <label htmlFor="dedicacion">Dedicación</label>
-							  	 <select className="form-control form-control-lg" name="dedicacion">
+							  	 <select 
+							  	 	className={form_class} 
+							  	 	name="dedicacion"
+						  	     	onChange={this.onChange}
+						  	     	value={dedicacion}>
+						  	     	<option></option>
 									{
-								   	 categoriaSelect?categoria[categoriaSelect].dedicacion
-								   	 .map((e,i)=><option key={i} value={e}>{e}</option>):null
+								   	 categoria&&categoria_vg?iterador(categoria_vg[categoria].dedicacion_vg):null
 								    }
 								</select>
 							</div>
 							<div className="form-group">
 						    	<label htmlFor="cargo">Cargo</label>
-							  	 <select className="form-control form-control-lg" name="cargo">
+							  	 <select 
+							  	 	className={form_class} 
+							  	 	name="cargo"
+						  	     	onChange={this.onChange}
+						  	     	value={cargo}>
+						  	     	<option></option>
 							  	 	{
-								   	 categoriaSelect?categoria[categoriaSelect].cargo
-								   	 .map((e,i)=><option key={i} value={e}>{e}</option>):null
+								   	 categoria&&categoria_vg?iterador(categoria_vg[categoria].cargo_vg):null
 								    }
 								</select>
 						 	</div>	 
 						 	<div className="form-group">
 						    	<label htmlFor="fecha_ingreso">Fecha de ingreso</label>
-						    	<input required type="date" maxLength="10" className="form-control form-control-lg" name="fecha_ingreso" defaultValue={fecha_ingreso?fecha_ingreso:""}  pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="Fecha de ingreso a la institución"/>
+						    	<input 
+						    		type="date" 
+						    		maxLength="10" 
+						    		className={form_class} 
+						    		name="fecha_ingreso" 
+						    		pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" 
+						    		placeholder="Fecha de ingreso a la institución" 
+						    		value={fecha_ingreso} 
+						    		onChange={this.onChange}
+						    		required/>
 						    	
 						 	</div>
 						 	<div className="form-group">
 						  		<label htmlFor="caja_ahorro">¿Aplica caja de ahorro?</label>
-							  	 <select className="form-control form-control-lg" name="caja_ahorro" >
+							  	 <select 
+							  	 	className={form_class} 
+							  	 	name="caja_ahorro"
+							  	 	onChange={this.onChange}
+							  	 	value={caja_ahorro}>
+							  	 	<option></option>
 								    <option value="0">No</option>
 								    <option value="1">Si</option>
 								</select>
 						  	</div>
 						  	<div className="form-group">
 							    <label htmlFor="antiguedad_otros_ieu">Años en otros Institutos de educación universitaria</label>
-							    <input required type="number" min="0" defaultValue="0" max="80" maxLength="3"  className="form-control form-control-lg" placeholder="Años en otros IEU" name="antiguedad_otros_ieu" defaultValue={antiguedad_otros_ieu?antiguedad_otros_ieu:""} />
+							    <input 
+							    type="number" 
+							    min="0" 
+							    max="80" 
+							    maxLength="3" 
+							    className={form_class} 
+							    placeholder="Años en otros IEU" 
+							    name="antiguedad_otros_ieu" 
+							    value={antiguedad_otros_ieu} 
+							    onChange={this.onChange}
+							    required/>
 							</div>
 							<hr/>
 							<div className="form-group">
 							    <label htmlFor="hrs_nocturnas">Horas extras nocturnas <strong>mensuales</strong></label>
-							    <input required type="number" min="0" defaultValue="0" max="80" maxLength="3"  className="form-control form-control-lg" placeholder="Horas munsuales" name="hrs_nocturnas" defaultValue={hrs_nocturnas?hrs_nocturnas:""} />
+							    <input 
+							    type="number" 
+							    min="0" 
+							    max="80" 
+							    maxLength="3" 
+							    className={form_class} 
+							    placeholder="Horas munsuales" 
+							    name="hrs_nocturnas" 
+							    value={hrs_nocturnas} 
+							    onChange={this.onChange}
+							    required/>
 							</div>
 							<div className="form-group">
 							    <label htmlFor="hrs_diurnas">Horas extras diurnas <strong>mensuales</strong></label>
-							    <input required type="number" min="0" defaultValue="0" max="80" maxLength="3"  className="form-control form-control-lg" placeholder="Horas munsuales"  name="hrs_diurnas" defaultValue={hrs_diurnas?hrs_diurnas:""} />
+							    <input 
+							    type="number" 
+							    min="0" 
+							    max="80" 
+							    maxLength="3" 
+							    className={form_class} 
+							    placeholder="Horas munsuales" 
+							    name="hrs_diurnas" 
+							    value={hrs_diurnas}
+							    onChange={this.onChange} 
+							    required/>
 							</div>
 							<div className="form-group">
 							    <label htmlFor="hrs_feriadas">Horas extras feriadas <strong>mensuales</strong></label>
-							    <input required type="number" min="0" defaultValue="0" max="80" maxLength="3"  className="form-control form-control-lg" placeholder="Horas munsuales" name="hrs_feriadas" defaultValue={hrs_feriadas?hrs_feriadas:""} />
+							    <input 
+							    type="number" 
+							    min="0" 
+							    max="80" 
+							    maxLength="3" 
+							    className={form_class} 
+							    placeholder="Horas munsuales" 
+							    name="hrs_feriadas" 
+							    value={hrs_feriadas}
+							    onChange={this.onChange} 
+							    required/>
 							</div>
 							<div className="form-group">
 							    <label htmlFor="hrs_feriadas_nocturnas">Horas extras feriadas-nocturnas <strong>mensuales</strong></label>
-							    <input required type="number" min="0" defaultValue="0" max="80" maxLength="3"  className="form-control form-control-lg" placeholder="Horas munsuales" name="hrs_feriadas_nocturnas" defaultValue={hrs_feriadas_nocturnas?hrs_feriadas_nocturnas:""} />
+							    <input 
+							    type="number" 
+							    min="0" 
+							    max="80" 
+							    maxLength="3" 
+							    className={form_class} 
+							    placeholder="Horas munsuales" 
+							    name="hrs_feriadas_nocturnas" 
+							    value={hrs_feriadas_nocturnas}
+							    onChange={this.onChange} 
+							    required/>
 							</div>
 					</div>
 			  </div>
-			  <div className="row mt-2">
-					<div className="text-center">
+			  <hr/>
+			  <div className="row">
+					<div className="">
 						<h1>
 							Agregar hijos 
-							<button className="btn btn-outline-success btn-lg" type="button" id="agregar_nuevo_hijo"><i className="fa fa-plus"></i></button>
+							<button 
+								onClick={this.addNewHijo}
+								className="ml-2 btn btn-outline-success btn-lg" 
+								type="button"><i className="fa fa-plus"></i></button>
 						</h1>
 					</div>
-				  	<table className='table table-bordered'>
+				  	<table className='table'>
 				  		<thead>
 					  		<tr>
-					  			<th>Id</th>
-					  			<th>Nombres</th>
-					  			<th>Apellidos</th>
+					  			<th>Nombres y Apellidos</th>
 					  			<th>Género</th>
 					  			<th>Fecha de nacimiento</th>
 					  			<th>¿Es estudiante?</th>
 					  			<th>¿Tiene alguna discapacidad?</th>
-					  			<th>Cancelar</th>
+					  			<th></th>
 					  		</tr>
 				  		</thead>
-				  		<tbody></tbody>
+				  		<tbody>
+				  			{
+				  				hijos.length>0? (
+				  					hijos.map((e,i)=>(
+				  						e.type===undefined||e.type==="modify"
+				  						?<tr key={i} className={e.remove?"item-delete":""}>
+				  							<td>{e.nombres_apellidos_hijo}</td>
+				  							<td>{e.genero_hijo}</td>
+				  							<td>{e.fecha_nacimiento_hijo}</td>
+				  							<td>{e.estudiante_hijo?"Si":"No"}</td>
+				  							<td>{e.discapacidad_hijo?"Si":"No"}</td>
+				  							<td>
+				  								<div className="btn-group">
+					  								{
+						  								e.remove===undefined
+					  									?(	<React.Fragment>
+							  									<button 
+							  										onClick={()=>this.editHijo(i)}
+							  										className="btn btn-sm btn-success" 
+							  										type="button"><i className="fa fa-pencil"></i>
+								  								</button>
+						  										<button 
+						  										onClick={()=>this.removeHijosExit(i)}
+						  										className="btn btn-sm btn-danger" 
+						  										type="button"><i className="fa fa-remove"></i>
+							  									</button>
+								  							</React.Fragment>
+							  							)
+					  									:<button 
+					  										onClick={()=>this.cancelRemoveHijosExit(i)}
+					  										className="btn btn-sm btn-danger" 
+					  										type="button"><i className="fa fa-arrow-right"></i>
+					  									</button>
+				  									}
+				  								</div>
+				  							</td>
+				  						</tr>
+				  						:<tr key={i}>
+				  							<td>
+				  								<input 
+				  									type="text" 
+				  									onChange={()=>this.onChangeHijos(i,event)}
+				  									name="nombres_apellidos_hijo" 
+				  									className="form-control"
+				  									required
+				  									value={e.nombres_apellidos_hijo}
+				  								/>
+				  							</td>
+				  							<td>
+				  								<select 
+				  									className="form-control" 
+				  									onChange={()=>this.onChangeHijos(i,event)}
+				  									name="genero_hijo"
+				  									required
+				  									value={e.genero_hijo}
+				  								>
+				  									<option value=""></option>
+											    	<option value="Masculino">Masculino</option>
+											   	    <option value="Femenino">Femenino</option>
+				  								</select>
+				  							</td>
+				  							<td>
+				  								<input 
+				  									type="date" 
+				  									onChange={()=>this.onChangeHijos(i,event)}
+				  									name="fecha_nacimiento_hijo" 
+				  									className="form-control"
+				  									required
+				  									value={e.fecha_nacimiento_hijo}
+				  									/></td>
+				  							<td>
+				  								<select 
+				  									className="form-control" 
+				  									onChange={()=>this.onChangeHijos(i,event)}
+				  									name="estudiante_hijo"
+				  									required
+				  									value={e.estudiante_hijo}
+				  								>
+				  									<option value=""></option>
+												    <option value="0">No</option>
+												    <option value="1">Si</option>
+					  							</select>
+				  							</td>
+				  							<td>
+				  								<select 
+				  									className="form-control" 
+				  									onChange={()=>this.onChangeHijos(i,event)}
+				  									name="discapacidad_hijo"
+				  									required
+				  									value={e.discapacidad_hijo}
+				  								>
+				  									<option></option>
+												    <option value="0">No</option>
+												    <option value="1">Si</option>
+					  							</select>
+				  							</td>
+				  							<td>
+				  								<div className="btn-group">
+					  								{	
+					  									e.type==="update"
+					  									?<button 
+					  										onClick={()=>this.cancelEditHijo(i)}
+					  										className="btn btn-sm btn-warning" 
+					  										type="button"><i className="fa fa-warning"></i>
+						  								</button>
+						  								:<button 
+					  										onClick={()=>this.removeHijo(i)}
+					  										className="btn btn-sm btn-warning" 
+					  										type="button"><i className="fa fa-remove"></i>
+					  									</button>
+					  								}	
+				  								</div>
+				  							</td>
+				  						</tr>
+				  					))
+				  				) : null
+				  			}
+
+				  		</tbody>
 				  	</table>
 			  </div>
+		  		{
+		  			hijos.length==0
+		  			? <h3 className="text-center">¡Sin carga familiar!</h3>
+	  				: null
+		  		}
 			</div>
 		)
 	}
 }
-Inputsregistrar.defaultProps = {
-	User: false
-}
+const mapStateProps = state => ({
+	persona: state.busqueda.persona,
+	personals: state.busqueda.personals,
+	valores_globales: state.busqueda.valores_globales,
+	editUser:state.busqueda.editUser
+})
+export default connect(mapStateProps, {getValoresGlobales,editUserInputs})(Inputsregistrar)

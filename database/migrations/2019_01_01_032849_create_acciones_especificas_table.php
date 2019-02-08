@@ -16,15 +16,17 @@ class CreateAccionesEspecificasTable extends Migration
         Schema::create('acciones_especificas', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->text('descripcion');
             $table->date('fecha');
            
             $table->integer('acciones_proyectos_id')->unsigned();
-            $table->foreign('acciones_proyectos_id')->references('id')->on('acciones_proyectos');
-            $table->string('partida',20)->index();
-            $table->foreign('partida')->references('codigo')->on('partidas_presupuestarias');
-
+            $table->foreign('acciones_proyectos_id')->references('id')
+            ->on('acciones_proyectos')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->timestamps();
+            
         });
     }
 

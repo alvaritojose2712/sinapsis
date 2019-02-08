@@ -5,5 +5,56 @@
 	transition: 1s;
 }
 .card-replegada{
-	opacity: 0.5;
+	opacity: .3;
+}
+.pointer{
+	cursor: pointer;
+}
+.hover:hover{
+	background-color: #DDE2F8;
+	color: #2D2D2D;
+}
+.item-delete{
+	opacity: .4;
+	zoom: .8;
+}
+.atenuar{
+	opacity: .6;
+}
+.boxAuto{
+	flex:1;
+	overflow: auto;
+}
+.h-10{
+	height: 10% !important;
+}
+.h-90{
+	height: 90% !important;
+}
+.sub-datos{
+	display: none;
+}
+.padre-datos .sub-datos{
+	display: initial;
+}
+.table td.fit, 
+.table th.fit {
+    white-space: nowrap;
+    width: 1%;
+}
+body *::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+body *::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 5px;
+}
+ 
+body *::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+table{
+	border-radius: 0.25rem;
 }

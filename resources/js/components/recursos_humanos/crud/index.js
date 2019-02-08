@@ -1,70 +1,38 @@
 import React, {Component} from 'react';
+import { Link, Route } from 'react-router-dom'
+import { Provider } from 'react-redux';
+
+import store from '../../store';
 
 import Busqueda from './Busqueda';
 import Vermas from './Vermas';
-import Registrar from './Registrar';
 import Editar from './Editar';
+import Registrar from './Registrar';
 	
-export default class Recursoshumanoscrud extends Component {
-	constructor(){
-		super();
-		this.state = {
-			datos: false,
-			vermas: false,
-			registrar:false,
-			editar:false,
-		}
-		this.modoVermas = this.modoVermas.bind(this)
-		this.modoRegistrar = this.modoRegistrar.bind(this)
-		this.modoEditar = this.modoEditar.bind(this)
-	};
 
-	modoVermas(datos){
-		this.setState({
-			datos:datos,
-			vermas:true,
-			registrar:false,
-			editar:false,
-		})
-	}
-	modoRegistrar(){
-		this.setState({
-			vermas:false, 
-			registrar:true,
-			editar:false,
-		})
-	}
-	modoEditar(e){
-		this.setState({
-			vermas:false, 
-			registrar:false,
-			editar:true,
-		})
-	}
+
+export default class Recursoshumanoscrud extends Component {
 	render(){
-		const {vermas,registrar,editar,datos} = this.state
-	
-		let action;
-		if (vermas) {
-			action =  <Vermas User={datos} editar={this.modoEditar}/>
-		}else if(registrar){
-			action = <Registrar/>
-		}else if(editar){
-			action = <Editar User={datos}/>
-		}
-		
 		return(
-			<div className='row h-100'>
-				<div className='col-3 text-white table-responsive'>
-					<div className='btn-group mb-2 mt-2'>
-						<button className='btn btn-warning btn-lg' onClick={this.modoRegistrar}>Incluir nuevo personal</button>
+			<Provider store={store}>
+				<div className='row h-100'>
+					<div className='col-3 text-white table-responsive bg-light rounded'>
+						<div className='mb-2 mt-2'>
+							<Link 
+							to="/recursoshumanos/personal/registrar"
+							className='btn btn-outline-danger btn-lg btn-block'>
+								<i className="fa fa-plus"></i> Incluir nuevo personal
+							</Link>
+						</div>
+						<Busqueda/>
 					</div>
-					<Busqueda select={this.modoVermas} cardSeleccionada={datos.id} />
+					<div className='col table-responsive bg-light rounded'>
+						<Route path='/recursoshumanos/personal/registrar' component={Registrar}/>
+						<Route path='/recursoshumanos/personal/editar' component={Editar}/>
+						<Route path='/recursoshumanos/personal/vermas' component={Vermas}/>
+					</div>
 				</div>
-				<div className='col table-responsive'>
-					{action}
-				</div>
-			</div>
+			</Provider>
 		);
 	};
 

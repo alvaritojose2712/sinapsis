@@ -11,31 +11,48 @@
 		body {
 		  height: 100%;
 		  width: 100%;
-		  background-color: #F4F4F4;
+		  background: #f2f2f2;
 		}
 		.flex{
 			display: flex;
 			flex-direction: column;
 		}
-		.box2{
-			flex:1;
-			overflow: auto;
+		.turquesa{
+			background: #11EDDD;
 		}
 	</style>
-	<script type="text/javascript">
-		// $(document).on("click",".alert",function() {
-		// 	$(this).css({display:"none"})
-		// })
-	</script>
 </head>
 <body>
 	<div class="flex h-100">
-		<div class="box1">
-	        <nav class="navbar navbar-dark bg-dark text-success">
-			  <a class="navbar-brand">Sinapsis</a>
+		<div>
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <a class="navbar-brand"><img src="{{asset('image/sinapsis/sinapsis.svg')}}" width="150px" alt="Logo Sinapsis"></a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+			    <ul class="navbar-nav">
+			      <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          <i class="fa fa-users fa-2x"></i> Recursos Humanos
+			        </a>
+			        <div class="dropdown-menu">
+			         <a class="dropdown-item" href="/recursoshumanos/personal/">Personal</a>
+			        </div>
+			      </li>
+			      <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			         <i class="fa fa-calculator fa-2x"></i> Presupuesto
+			        </a>
+			        <div class="dropdown-menu">
+			         <a class="dropdown-item" href="/presupuesto/">Inicio</a>
+			        </div>
+			      </li>
+			    </ul>
+			  </div>
 			</nav>
 		</div>
-		<div class="box2 container-fluid h-100">
+		<div class="boxAuto container-fluid bg-dark">
 	    	@yield('contenido')
 	    </div>
 	</div>

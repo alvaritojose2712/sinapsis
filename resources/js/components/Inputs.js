@@ -15,9 +15,14 @@ const Put = () => {
         <input type="hidden" name="_method" defaultValue="PUT"/>
     );
 };
+const Patch = () => {
+    return (
+        <input type="hidden" name="_method" defaultValue="PATCH"/>
+    );
+};
 const Delete = () => {
     return (
         <input type="hidden" name="_method" defaultValue="DELETE"/>
     );
 };
-export {CSRF,Put,Delete};
+export {CSRF,Put,Delete,Patch};

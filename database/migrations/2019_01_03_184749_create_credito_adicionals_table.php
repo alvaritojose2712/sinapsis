@@ -17,9 +17,11 @@ class CreateCreditoAdicionalsTable extends Migration
             $table->engine = 'InnoDB';
             
             $table->increments('id');
-            $table->date("fecha");
             $table->text("descripcion");
             $table->float("monto");
+            $table->date("fecha");
+            $table->timestamps();
+            
         });
     }
 

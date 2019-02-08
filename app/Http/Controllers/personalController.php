@@ -16,11 +16,7 @@ class personalController extends Controller
      */
     public function index()
     {
-        $personas = personal::all();
-        foreach ($personas as $persona) {
-            $persona->hijos = personal::find($persona->id)->hijos;
-        }
-        return $personas;
+        return personal::with("hijos")->get();
     }
 
     /**
@@ -42,13 +38,12 @@ class personalController extends Controller
     public function store(Request $request)
     {
         try{
-            personal::create($request->all());
-            return "¡Se ha insertado con éxito!";
+            $per = personal::create($request->data_padre);
+            $per->hijos()->createMany($request->hijos);
+            return response(["code"=>200,"msj"=>"¡Éxito al guardar!"],200);
         }catch(\Exception $e){
-           // do task when error
-           return response($e->getMessage(),200);
+           return response(["code"=>500,"msj"=>$e->getMessage()],200);
         }
-         
     }
 
     /**
@@ -59,16 +54,10 @@ class personalController extends Controller
      */
     public function show($id)
     {
-        $personas =  personal::where("cedula","LIKE","$id%")
+        return personal::with("hijos")->where("cedula","LIKE","$id%")
             ->orWhere("nombre","LIKE","$id%")
             ->orWhere("apellido","LIKE","$id%")
             ->get();
-        foreach ($personas as $persona) {
-            $persona->hijos = personal::find($persona->id)->hijos;
-        }
-        return $personas;
-
-        
     }
 
     /**
@@ -79,8 +68,8 @@ class personalController extends Controller
      */
     public function edit($id)
     {
-        return View::make('nerds.edit')
-            ->with('user', personal::find($id));
+        // return View::make('nerds.edit')
+        //     ->with('user', personal::find($id));
     }
 
     /**
@@ -92,7 +81,37 @@ class personalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $per = personal::find($id);
+            #Actualizar representante
+            $per->update($request->data_padre);
+            #Ingresar hijos
+            $per->hijos()->createMany(array_filter($request->hijos,function($val){
+                return !isset($val['id'])&&!isset($val['remove']);
+            }));
+            
+            #Actualizar hijos existentes
+            $hijos_old = array_filter($request->hijos,function($val){
+                return isset($val['id'])&&isset($val['type'])&&!isset($val['remove']);
+            });
+            foreach ($hijos_old as $val) {
+                unset($val['type']);
+                unset($val['cedula_representante']);
+                $per->hijos()->where("id",$val['id'])->update($val);
+            }
+
+            #Borrar hijos
+            $hijos_remove = array_filter($request->hijos,function($val){
+                return isset($val['remove']);
+            });
+            foreach ($hijos_remove as $val) {
+                $per->hijos()->where("id",$val['id'])->delete();
+            }
+
+            return response(["code"=>200,"msj"=>"¡Éxito al editar!"],200);
+        }catch(\Exception $e){
+           return response(["code"=>500,"msj"=>$e->getMessage()],200);
+        }
     }
 
     /**
@@ -103,7 +122,12 @@ class personalController extends Controller
      */
     public function destroy($id)
     {
-        personal::find($id)->delete();
-        return back();
+        
+        try{
+            personal::find($id)->delete();
+            return response(["code"=>200,"msj"=>"¡Éxito al eliminar!"],200);
+        }catch(\Exception $e){
+           return response(["code"=>500,"msj"=>$e->getMessage()],200);
+        }
     }
 }

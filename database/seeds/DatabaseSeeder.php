@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
             PartidasSeeder::class,
             Acciones_especificasSeeder::class,
             Presupuesto_ordinarioSeeder::class,
+            CreditoAdicionalSeeder::class,
             Movimientos_presupuestariosSeeder::class,
+            
         ]);
 
         

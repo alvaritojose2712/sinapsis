@@ -18,7 +18,7 @@ class Personal extends Seeder
 	            'apellido' => 'Ospino',
 	            'cedula' => '26767116',
 	            'nacionalidad' => 'V',
-	            'genero' => 'MASCULINO',
+	            'genero' => 'Masculino',
 	            'fecha_nacimiento' => '1998-12-27',
 	            'telefono_1' => '04269422081',
 	            'telefono_2' => '02409940793',

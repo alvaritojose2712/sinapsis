@@ -17,10 +17,18 @@ class CreatePresupuestoOrdinariosTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->string('partida_codigo',20)->index();
-            $table->foreign("partida_codigo")->references("codigo")->on("partidas_presupuestarias");
-            $table->float("monto");
+            $table->string('denominacion');
+            $table->string('partida',20)->index();
+            $table->foreign("partida")->references("codigo")->on("partidas_presupuestarias")
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->integer('ae')->unsigned();
+            $table->foreign('ae')->references('id')->on('acciones_especificas')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->decimal("monto",15,5);
             $table->date("fecha");
+            $table->timestamps();
         });
     }
 

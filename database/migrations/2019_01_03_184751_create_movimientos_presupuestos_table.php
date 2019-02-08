@@ -16,13 +16,17 @@ class CreateMovimientosPresupuestosTable extends Migration
         Schema::create('movimientos_presupuestos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             
-            $table->integer('id')->unsigned();
-            $table->foreign('id')->references("id")->on("presupuesto_ordinarios");
-            $table->float('entrada');
-            $table->float('salida');
+            $table->increments('id');
             $table->text('descripcion');
+            $table->integer('referencia')->unsigned();
+            $table->foreign('referencia')->references("id")->on("presupuesto_ordinarios")
+            ->onUpdate('cascade');
+            $table->float('movimiento');
+            $table->integer("credito_adicional")->unsigned();
+            $table->foreign("credito_adicional")->references("id")->on("credito_adicionals")
+            ->onUpdate('cascade');
             $table->date("fecha");
-            $table->string("credito_adicional",20);
+            $table->timestamps();
         });
     }
 

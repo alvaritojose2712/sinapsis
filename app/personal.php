@@ -36,6 +36,6 @@ class personal extends Model
             "cargo_desempeñado_departamento",
         ];
     public function hijos() { 
-        return $this->hasMany('sinapsis\hijos_personal',"cedula_representante"); 
+        return $this->hasMany('sinapsis\hijos_personal',"cedula_representante","cedula"); 
     }
 }

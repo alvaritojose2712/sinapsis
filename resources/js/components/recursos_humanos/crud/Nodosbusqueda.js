@@ -1,34 +1,39 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import { connect } from 'react-redux'
 
-export default class Nodosbusqueda extends Component{
-	constructor(){
-		super();
-		this.select = this.select.bind(this)
-	}
+import {formatCedula} from '../../formats';
+import { selectPersonal } from './actions/busquedaActions';
+
+class Nodosbusqueda extends Component{
 	render(){
-		let {id,cedula,apellido,nombre} = this.props.user; 
+		let {data,index} = this.props.user
+		let {id,cedula,apellido,nombre} = data; 
 		
 		return( 
-			<div className={this.select()}>
+			<div className={this.props.persona===index?"bg-primary text-light card mt-2":"bg-dark card mt-2"}>
 				<div className="card-header flex-row row justify-content-between">
-					<div>{id}</div>
-					<div><i>{cedula}</i></div>
+					<div>
+						<small>{id}</small>
+					</div>
+					<div><span>{formatCedula(cedula)}</span></div>
 				</div>
 				<div className="card-body">
 					<h5 className="card-title"><b>{apellido}</b>, {nombre}</h5>
 					<p className="card-text">
-						<button 
-							className="btn btn-secundary btn-large" 
-							onClick={()=>{this.props.select(this.props.user)}}>Ver más
-						</button>
+						<Link to="/recursoshumanos/personal/vermas">
+							<button 
+								className="btn btn-secundary btn-large" 
+								onClick={()=>{this.props.selectPersonal(index)}}>Ver más
+							</button>
+						</Link>
 					</p>
 				</div>
 			</div>
 		)
 	}
-	select(){
-		let clases = 'card mt-2 bg-'
-		clases += (this.props.cardSeleccionada==this.props.user.id) ? "primary" : "dark"
-		return clases
-	}
 }
+const state = state => ({
+	persona: state.busqueda.persona
+})
+export default connect(state, {selectPersonal})(Nodosbusqueda)

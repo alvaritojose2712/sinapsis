@@ -1,78 +1,50 @@
 import React, {Component} from 'react';
-import Cargando from '../../cargando';
-import Notificacion from '../../notificacion';
-import InputsRegistrar from './Inputsregistrar'
+import { connect } from 'react-redux';
+import { emptyEditUser, buscarPersonal } from './actions/busquedaActions';
 
-export default class Registrar extends Component{
+import Notificacion from '../../notificacion';
+import InputsRegistrar from './Inputsregistrar';
+import {getDataForm} from '../../formats';
+import { openNotificacion,finishNotificacion } from '../../utilidadAction'
+
+		
+
+
+class Registrar extends Component{
 	constructor(){
 		super();
-		this.state = {
-			cargando:true,
-			notificacion:{
-				active:false,
-				cargando:false,
-				color:"danger",
-				msj:"Hola mundo",
-			},
-		}
 		this.guardar = this.guardar.bind(this)
-
 	};
-	
+	componentDidMount(){
+		this.props.emptyEditUser()
+	}
 	guardar(e){
 		e.preventDefault()
-		 this.setState({
-        	notificacion:{
-				active:true,
-				cargando:true,
-				color:"warning",
-				msj:"",
-			} 
-        });
-		let form = new FormData(e.target)
-	    let data = {}
-	    for(let key of form.entries()){
-	    	data[key[0]] = key[1]
-	    }
-		try{
+		this.props.openNotificacion()
+
+		 let padre = {...this.props.editUser}
+		 let hijos = [...this.props.editUser.hijos]
+		 delete padre.id
+		 delete padre.hijos
 			axios
-			.post('/recursoshumanos/personalController',data)
+			.post('/recursoshumanos/personalController',{data_padre:padre,hijos:hijos})
 		    .then(res=>{
-		        this.setState({
-		        	notificacion:{
-						active:true,
-						cargando:false,
-						color:"success",
-						msj:res.data,
-					} 
-		        });
+				this.props.finishNotificacion(res.data)
+		        if (res.data.code=="200") this.props.buscarPersonal()
 		       
 		    })
-		}
-	    catch(err){
-	        this.setState({
-	        	notificacion:{
-					active:true,
-					cargando:false,
-					color:"danger",
-					msj:JSON.stringify(err.response.data),
-				} 
-	        });
-	    };
 	}
-	render(){
-		const {cargando,notificacion} = this.state
-		
+	render(){		
 		return(
-			<form onSubmit={this.guardar} className="container-fluid m-2">
+			<form onSubmit={this.guardar} method="post">
 				<Notificacion 
-					cargando={notificacion.cargando} 
-					active={notificacion.active} 
-					color={notificacion.color} 
-					msj={notificacion.msj}/>
-			    <div>
+					cargando={this.props.notificacion.cargando} 
+					active={this.props.notificacion.active} 
+					color={this.props.notificacion.color} 
+					msj={this.props.notificacion.msj}/>
+			    <div className="mt-2">
 			  		<div className="btn-group">
-						<button type="submit" className="btn btn-info btn-lg"><i className="fa fa-save"></i> Guardar información</button>
+						<button type="submit" className="btn btn-outline-info btn-lg"><i className="fa fa-save"></i> Guardar información</button>
 					</div>
 			    </div>
 				<InputsRegistrar/>
@@ -81,3 +53,14 @@ export default class Registrar extends Component{
 	}
 }
 
+const mapStateProps = state => ({
+	editUser:state.busqueda.editUser,
+	notificacion: state.utilidad.notificacion,
+
+})
+export default connect(mapStateProps, {
+	emptyEditUser,
+	buscarPersonal,
+	openNotificacion,
+	finishNotificacion,
+})(Registrar)

@@ -3,7 +3,6 @@
 namespace sinapsis\Http\Controllers;
 
 use Illuminate\Http\Request;
-use sinapsis\Presupuesto_ordinario;
 use sinapsis\Movimientos_presupuesto;
 
 class Movimientos_presupuestariosController extends Controller
@@ -13,9 +12,9 @@ class Movimientos_presupuestariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+   public function index()
     {
-        //
+       return Movimientos_presupuesto::all();
     }
 
     /**
@@ -36,7 +35,19 @@ class Movimientos_presupuestariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $MovimientosPresupuestarios = new Movimientos_presupuesto;
+            $MovimientosPresupuestarios->movimiento = $request->movimiento;
+            $MovimientosPresupuestarios->descripcion = $request->descripcion;
+            $MovimientosPresupuestarios->referencia = $request->referencia;
+            $MovimientosPresupuestarios->fecha = $request->fecha;
+            $MovimientosPresupuestarios->credito_adicional = $request->credito_adicional;           
+            
+            $MovimientosPresupuestarios->save();
+            return response(["code"=>200,"msj"=>"¡Éxito al guardar!"],200);
+        }catch(\Exception $e){
+           return response(["code"=>500,"msj"=>$e->getMessage()],200);
+        }
     }
 
     /**
@@ -47,11 +58,10 @@ class Movimientos_presupuestariosController extends Controller
      */
     public function show($id)
     {
-        $Presupuesto_ordinario = Presupuesto_ordinario::where("partida_codigo","=",$id)->get();
-        foreach ($Presupuesto_ordinario as $Presupuesto_ord) {
-            $Presupuesto_ord->movimientos = Movimientos_presupuesto::where("id","=",$Presupuesto_ord->id)->get();
-        }
-        return $Presupuesto_ordinario;
+        return Movimientos_presupuesto::where("id","LIKE","$id%")
+            ->orWhere("descripcion","LIKE","$id%")
+            ->orWhere("referencia","LIKE","$id%")
+            ->get();
     }
 
     /**
@@ -74,7 +84,15 @@ class Movimientos_presupuestariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $MovimientosPresupuestariosUpdate = Movimientos_presupuesto::where("id",$id);
+            
+            $MovimientosPresupuestariosUpdate->update($request->all());
+
+            return response(["code"=>200,"msj"=>"¡Éxito al editar!"],200);
+        }catch(\Exception $e){
+           return response(["code"=>500,"msj"=>$e->getMessage()],200);
+        }
     }
 
     /**
@@ -85,6 +103,12 @@ class Movimientos_presupuestariosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            Movimientos_presupuesto::where("id",$id)->delete();
+            return response(["code"=>200,"msj"=>"¡Éxito al eliminar!"],200);
+        }catch(\Exception $e){
+           return response(["code"=>500,"msj"=>$e->getMessage()],200);
+        }
     }
 }
+

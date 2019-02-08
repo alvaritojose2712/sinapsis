@@ -16,11 +16,11 @@ class CreateHijosPersonalsTable extends Migration
         Schema::create('hijos_personals', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('genero');
-            $table->string('nombres_apellidos');
-            $table->string('fecha_nacimiento');
-            $table->boolean('estudiante');
-            $table->boolean('discapacidad');
+            $table->string('genero_hijo');
+            $table->string('nombres_apellidos_hijo');
+            $table->string('fecha_nacimiento_hijo');
+            $table->boolean('estudiante_hijo');
+            $table->boolean('discapacidad_hijo');
 
             $table->integer('cedula_representante')->index();
             $table->foreign('cedula_representante')

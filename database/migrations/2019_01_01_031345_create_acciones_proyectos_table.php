@@ -16,10 +16,12 @@ class CreateAccionesProyectosTable extends Migration
         Schema::create('acciones_proyectos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->text('descripcion');
             $table->string('tipo');
             $table->date('fecha');
+            $table->timestamps();
+            
         });
     }
 

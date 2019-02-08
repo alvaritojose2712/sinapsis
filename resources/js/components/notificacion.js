@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import Cargando from './cargando';
+import { connect } from 'react-redux';
+import { initialNotificacion } from './utilidadAction'
+
 
 	
-export default class Notificacion extends Component {
+class Notificacion extends Component {
 	constructor(){
 		super();
 		this.state = {
@@ -17,11 +20,11 @@ export default class Notificacion extends Component {
 		}));
 	}
 	render(){
-		let clases = "alert-"+this.props.color+" alert alert-dismissible fade show"
+		let clases = "alert-"+this.props.color+" alert alert-dismissible fade show pointer"
 		let display = this.props.active?{display:""}:{display:"none"}
 		let display_body = this.props.cargando?{display:"none",overflow:"auto"}:{display:"",overflow:"auto"}
 		return(
-			<div className={clases} role="alert" style={display}>
+			<div className={clases} role="alert" style={display} onClick={this.props.initialNotificacion}>
 			  <div style={display_body}>
 			  	<strong>Notificación: </strong>{this.props.msj}
 			  </div>
@@ -32,4 +35,10 @@ export default class Notificacion extends Component {
 
 
 };
+export default connect(
+    null,
+    {
+    	initialNotificacion
+    }
+)(Notificacion);
 

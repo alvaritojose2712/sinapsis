@@ -19,6 +19,7 @@ class CreatePartidasPresupuestariasTable extends Migration
             $table->string('codigo',20)->primary();
             $table->text('partida');
             $table->text('descripcion');
+            $table->timestamps();
 
         });
     }

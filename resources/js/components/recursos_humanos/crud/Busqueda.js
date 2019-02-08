@@ -1,40 +1,28 @@
 import React, {Component} from 'react';
+
+import { connect } from 'react-redux'
+import { buscarPersonal } from './actions/busquedaActions';
+
 import Cargando from '../../cargando';
 import Nodosbusqueda from './Nodosbusqueda';
 
-export default class Busqueda extends Component{
-	constructor(){
-		super();
+class Busqueda extends Component{
+	constructor(props){
+		super(props);
 		this.state = {
-			data: [],
-			cargando:true,
+			cargando:true
 		}
-		this.busqueda = this.busqueda.bind(this)
-		this.api_get = this.api_get.bind(this)
-		
+		this.busqueda = this.busqueda.bind(this)	
 	};
-	
 	componentWillMount(){
-		this.api_get()
+		this.props.buscarPersonal("",()=>this.setState({cargando:false}))
 	};
-	api_get(q=""){
-		axios
-		.get("/recursoshumanos/personalController/"+q)
-		.then(res => {
-			if (typeof res.data != "object") {
-				res.data = []
-			}
-			this.setState({data:res.data,cargando:false})
-			
-		})
-		.catch(err=>console.log(err))
-	}
 	busqueda(e) {
 		this.setState({cargando:true})
-		this.api_get(e.target.value)
+		this.props.buscarPersonal(e.target.value,()=>this.setState({cargando:false}))
 	}
 	render(){
-		const {cargando,data} = this.state
+		const {personals} = this.props
 		return(
 			<React.Fragment>	
 				<div className="">
@@ -45,16 +33,20 @@ export default class Busqueda extends Component{
 						</div>
 					</div>
 				</div>
-				<Cargando active={cargando}/>
-				{data.length?null:<div className='h3 text-center text-dark'><i>¡Sin resultados!</i></div>}
-				{data.map((e,i)=>
-					<Nodosbusqueda 
-						user={e} 
-						key={i} 
-						cardSeleccionada={this.props.cardSeleccionada}
-						select={this.props.select}/>
-				)}
+				
+				<Cargando active={this.state.cargando}/>
+				{	
+					personals.length
+					? personals.map( (e,i) => <Nodosbusqueda user={{index:i,data:e}} key={i}/> )
+					: <div className='h3 text-center text-dark mt-2'><i>¡Sin resultados!</i></div>
+				}
 			</React.Fragment>
 		)
 	}
 }
+
+const mapStateProps = state => ({
+	personals: state.busqueda.personals
+})
+
+export default connect(mapStateProps, {buscarPersonal})(Busqueda)

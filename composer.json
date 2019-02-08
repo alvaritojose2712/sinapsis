@@ -23,6 +23,9 @@
             "database/seeds",
             "database/factories"
         ],
+        "files": [
+            "app/Helpers/Helper.php"
+        ],
         "psr-4": {
             "sinapsis\\": "app/"
         }

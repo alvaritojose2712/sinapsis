@@ -18,12 +18,15 @@ Route::get('/recursoshumanos/personal', function(){
 });
 
 
-Route::get('/presupuesto/ordinario', function(){
-    return view("presupuesto.ordinario");
+Route::get('/presupuesto/', function(){
+    return view("presupuesto.index");
 });
 Route::resource('/presupuesto/partidas', "partidasController");
 Route::resource('/presupuesto/acciones_especificas', "Acciones_especificasController");
 Route::resource('/presupuesto/movimientos_presupuestarios', "Movimientos_presupuestariosController");
+Route::resource('/presupuesto/acciones_proyectos', "accionesProyectosController");
+Route::resource('/presupuesto/presupuesto_ordinario', "presupuestoOrdinarioController");
+Route::resource('/presupuesto/credito_adicional', "creditoAdicionalController");
 
 
 

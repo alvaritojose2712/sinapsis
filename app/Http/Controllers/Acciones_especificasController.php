@@ -4,8 +4,6 @@ namespace sinapsis\Http\Controllers;
 
 use Illuminate\Http\Request;
 use sinapsis\Acciones_especifica;
-use sinapsis\Partidas_presupuestaria;
-use sinapsis\Acciones_proyecto;
 
 class Acciones_especificasController extends Controller
 {
@@ -14,9 +12,9 @@ class Acciones_especificasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+   public function index()
     {
-        //
+       return Acciones_especifica::all();
     }
 
     /**
@@ -37,7 +35,18 @@ class Acciones_especificasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+            $AccionesEspecificas = new Acciones_especifica;
+            $AccionesEspecificas->nombre = $request->nombre;
+            $AccionesEspecificas->descripcion = $request->descripcion;
+            $AccionesEspecificas->acciones_proyectos_id = $request->acciones_proyectos_id;
+            $AccionesEspecificas->fecha = $request->fecha;           
+            
+            $AccionesEspecificas->save();
+            return response(["code"=>200,"msj"=>"¡Éxito al guardar!"],200);
+        }catch(\Exception $e){
+           return response(["code"=>500,"msj"=>$e->getMessage()],200);
+        }
     }
 
     /**
@@ -47,38 +56,10 @@ class Acciones_especificasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
-        $acciones_especificas = Acciones_especifica::where("partida","=",$id)->get(); 
-        $all = [];
-        foreach ($acciones_especificas as $accion_especifica) {
-            $id_ae = $accion_especifica['id'];
-            $acciones_proyectos_id = $accion_especifica['acciones_proyectos_id'];
-           
-            $accion_proyecto = Acciones_especifica::find($acciones_proyectos_id)->acciones_preyecto;
-           
-            $id_ap = $accion_proyecto['id'];
-
-            if (!isset($all[$id_ap])) {
-                $all[$id_ap] = $accion_proyecto;
-                $all[$id_ap]['especificas'] = array($id_ae=>$accion_especifica);
-
-            }else{
-                $arr_old = $all[$id_ap]['especificas'];
-                $arr_old[$id_ae] = $accion_especifica;
-                $all[$id_ap]['especificas'] = $arr_old;
-            }
-            
-        }
-        $arr = [];
-        foreach ($all as $value) {
-            $arr_e = [];
-            foreach ($value['especificas'] as $especifica) {
-                array_push($arr_e, $especifica);
-            }
-            $value['especificas'] = $arr_e;
-            array_push($arr, $value);
-        }
-        return response()->json($arr);
+    {
+        return Acciones_especifica::where("nombre","LIKE","$id%")
+            ->orWhere("descripcion","LIKE","$id%")
+            ->get();
     }
 
     /**
@@ -101,7 +82,15 @@ class Acciones_especificasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try{
+            $AccionesEspecificasUpdate = Acciones_especifica::where("id",$id);
+            
+            $AccionesEspecificasUpdate->update($request->all());
+
+            return response(["code"=>200,"msj"=>"¡Éxito al editar!"],200);
+        }catch(\Exception $e){
+           return response(["code"=>500,"msj"=>$e->getMessage()],200);
+        }
     }
 
     /**
@@ -112,6 +101,11 @@ class Acciones_especificasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            Acciones_especifica::where("id",$id)->delete();
+            return response(["code"=>200,"msj"=>"¡Éxito al eliminar!"],200);
+        }catch(\Exception $e){
+           return response(["code"=>500,"msj"=>$e->getMessage()],200);
+        }
     }
 }

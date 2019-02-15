@@ -103,19 +103,6 @@ class Routes extends Component {
 						  className={addClass(this.props.selectModel,"MovimientosPresupuestarios","btn","btn-outline-warning","btn-outline-primary btn-sm")}>
 						     Movimientos presupuestarios
 						  </Link>
-						  <Link 
-						  to="/presupuesto/forms/"
-						  onClick={
-						  	()=>{
-						  		this.props.selectModelFun(
-						  			"CreditoAdicional",
-						  			(val)=>this.changeModel(val)
-						  		)
-						  	}
-						  }
-						  className={addClass(this.props.selectModel,"CreditoAdicional","btn","btn-outline-warning","btn-outline-primary btn-sm")}>
-						     Crédito adicional
-						  </Link>
 					</div>
 					<div className="p-2 bg-light rounded boxAuto">
 						{

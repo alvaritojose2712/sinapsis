@@ -127,11 +127,14 @@ const defaultState = {
 
                     }, 
                 },
-                { name:"credito_adicional", label:"Crédito adicional", isSelect:true, options: {
-                        optionsList: "",
-                        optionsListUri:"/presupuesto/credito_adicional/",
-                        value:"id",
-                        label:['id',"descripcion"],
+                { name:"tipo", label:"Tipo de movimiento", isSelect:true, options:{
+                        optionsListUri:"",
+                        optionsList: [ 
+                            { label:"Presupuesto ley", value:0 }, 
+                            { label:"Crédito adicional", value:1 },
+                        ],
+                        label:null,
+                        value:null,
 
                     }, 
                 },
@@ -141,30 +144,14 @@ const defaultState = {
                 descripcion: "Descripción",
                 fecha:"Fecha",
                 referencia:"Presupuesto ordinario",
-                credito_adicional: "Crédito adicional",
+                tipo: "Tipo de movimiento",
                 created_at: "Fecha de creación",
                 updated_at: "Fecha de actualización",
             },
             uri:"/presupuesto/movimientos_presupuestarios/",
             primary: "id",
         },
-        CreditoAdicional:{
-            nombre: "Créditos adicionales",
-			fields:[
-				{ name:"descripcion", type:"text", placeholder: "Descripción", label:"Descripción"},
-				{ name:"monto", type:"text", placeholder: "Monto", label:"Monto" },
-				{ name:"fecha", type:"date", placeholder: "Fecha", label:"Fecha" },
-			],
-            traducciones: {
-                descripcion: "Descripción",
-                monto: "Monto",
-                fecha:"Fecha",
-                created_at: "Fecha de creación",
-                updated_at: "Fecha de actualización",
-            },
-			uri:"/presupuesto/credito_adicional/",
-            primary: "id",
-		},
+        
 	},
 	selectModel:null,
 };

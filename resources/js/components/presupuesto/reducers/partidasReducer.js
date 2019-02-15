@@ -6,7 +6,6 @@ const initialState = {
 	acciones_proyectos: {num:[],data:[]},
 	partidaSelect:{codigo:"",partida:""},
 	accionProyectoSelect:null,
-	movimientosSelect:null,
 }
 
 export default function(state = initialState, {type,payload}){
@@ -31,11 +30,7 @@ export default function(state = initialState, {type,payload}){
 				...state,
 				accionProyectoSelect:payload
 			}
-		case SELECT_MOVIMIENTOS:
-			return {
-				...state,
-				movimientosSelect:payload
-			}
+		
 		default:
 		return state
 	}

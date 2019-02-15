@@ -3,8 +3,8 @@ import { Link, Route } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import store  from '../store'
 
-import Partidas from './partidas/';
-import accionesProyectos from './acciones_proyectos/';
+import Partidas from './partidas/partidasIndex';
+import accionesProyectos from './acciones_proyectos/accionProyectosIndex';
 import Forms from './forms/';
 
 export default class Presupuesto extends Component {
@@ -21,10 +21,10 @@ export default class Presupuesto extends Component {
 								<Link className="btn btn-primary" to='/presupuesto/forms/'>
 									<i className="fa-2x fa fa-wpforms" title="Formularios"></i> 
 								</Link>
-								<Link className="btn btn-primary" to='/presupuesto/partidas'>
+								<Link className="btn btn-primary" to='/presupuesto/partidas/'>
 									<i className="fa-2x fa fa-calculator" title="Partidas Presupuestaria"></i> 
 								</Link>
-								<Link className="btn btn-primary" to='/presupuesto/acciones_proyectos'>
+								<Link className="btn btn-primary" to='/presupuesto/acciones_proyectos/'>
 									<i className="fa-2x fa fa-book" title="Acciones / Proyectos"></i>					
 								</Link>
 							</div>

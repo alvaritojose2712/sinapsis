@@ -37,13 +37,13 @@ class presupuestoOrdinarioController extends Controller
     {
         try{
             $PresupuestOrdinario = new Presupuesto_ordinario;
-            $PresupuestOrdinario->monto = $request->monto;
-            $PresupuestOrdinario->denominacion = $request->denominacion;
-            $PresupuestOrdinario->ae = $request->ae;
-            $PresupuestOrdinario->partida = $request->partida;           
-            $PresupuestOrdinario->fecha = $request->fecha;           
+            // $PresupuestOrdinario->monto = $request->monto;
+            // $PresupuestOrdinario->denominacion = $request->denominacion;
+            // $PresupuestOrdinario->ae = $request->ae;
+            // $PresupuestOrdinario->partida = $request->partida;           
+            // $PresupuestOrdinario->fecha = $request->fecha;           
             
-            $PresupuestOrdinario->save();
+            $PresupuestOrdinario->insert($request->all());
             return response(["code"=>200,"msj"=>"¡Éxito al guardar!"],200);
         }catch(\Exception $e){
            return response(["code"=>500,"msj"=>$e->getMessage()],200);
@@ -58,8 +58,10 @@ class presupuestoOrdinarioController extends Controller
      */
     public function show($id)
     {
-        return Presupuesto_ordinario::where("nombre","LIKE","$id%")
+        return Presupuesto_ordinario::where("partida","LIKE","$id%")
+            ->orWhere("ae","LIKE","$id%")
             ->orWhere("denominacion","LIKE","$id%")
+            ->orWhere("id","LIKE","$id%")
             ->get();
     }
 

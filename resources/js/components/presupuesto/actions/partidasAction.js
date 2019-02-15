@@ -39,12 +39,5 @@ export const selectAccionEspecificaFun = (index) => dispatch => {
 	})
 }
 
-export const selectMovimientosFun = (index) => dispatch => {
-	dispatch({
-		type: SELECT_MOVIMIENTOS,
-		payload: index
-	})
-}
-
 
 

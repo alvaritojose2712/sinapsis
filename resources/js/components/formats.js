@@ -60,4 +60,23 @@ function getDataForm(target){
     }
     return data;
 }
-export {formatCedula,formatMoneda,formatPartida,diffFecha,getDataForm}
+let leerTxt = (e,callback)=>{
+    let archivo = e.target.files[0];
+    if (!archivo) {
+        return;
+    }
+    let lector = new FileReader();
+    lector.onload = e => {
+    let contenido = e.target.result;
+    
+        callback(contenido
+            .replace(/\r/g,"")
+            .split(/\n/)
+            .map(e=>e?e.split(/\t/).filter(ee=>ee&&ee.length):null)
+            .filter(e=>e&&e.length)
+        )
+        
+    };
+    lector.readAsText(archivo,"ISO-8859-1");
+}
+export {formatCedula,formatMoneda,formatPartida,diffFecha,getDataForm,leerTxt}

@@ -74,10 +74,10 @@ class partidasController extends Controller
                         "data" =>  Acciones_proyecto::with(["especificas" => function($q) use ($id){
                             
                             $q->with(["ordinario"=>function($qq) use ($id){
-                                $qq->with(["movimientos"])->where("partida","LIKE","$id%");
+                                $qq->with(["movimientos"])->where("partida","LIKE","$id%")->orderBy("fecha","desc");
                             }])->whereIn("id",function($qq) use ($id){
                                 $qq->from("presupuesto_ordinarios")->where("partida","LIKE","$id%")->select("ae");
-                            });
+                            })->orderBy("fecha","desc");
 
                         }])
                         ->whereIn("id",function($q) use ($id){
@@ -87,13 +87,6 @@ class partidasController extends Controller
                         })
                         ->orderBy("tipo","Proyecto")
                         ->get(),
-
-
-// Acciones_proyecto::with(["especificas" => function($q) use ($id){
-//     $q->where("partida","LIKE","$id%");
-// }])->whereIn("id", function($q) use ($id){
-//     $q->from("acciones_especificas")->select("acciones_proyectos_id")->where("partida","LIKE","$id%");
-// })->orderBy("tipo","Proyecto")->get(),
                     );
                     $partidas[0]->partida_padre = $arr_data_partida_padre;
                 }

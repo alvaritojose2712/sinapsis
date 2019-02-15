@@ -16,8 +16,8 @@ class accionesProyectosController extends Controller
     {
        return Acciones_proyecto::with(["especificas"=>function($q){
             $q->with(["ordinario"=>function($qq){
-                            $qq->orderBy("fecha","DESC");
-                        }]);
+                    $qq->with(["movimientos","partida","ae"])->orderBy("fecha","DESC");
+                }]);
         }])->get();
     }
 
@@ -63,8 +63,8 @@ class accionesProyectosController extends Controller
     {
         return Acciones_proyecto::with(["especificas"=>function($q){
             $q->with(["ordinario"=>function($qq){
-                            $qq->orderBy("fecha","DESC");
-                        }]);
+                $qq->with(["movimientos","partida","ae"])->orderBy("fecha","DESC");
+            }]);
         }])->where("nombre","LIKE","$id%")
             ->orWhere("descripcion","LIKE","$id%")
             ->get();

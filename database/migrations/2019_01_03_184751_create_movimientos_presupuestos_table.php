@@ -22,9 +22,7 @@ class CreateMovimientosPresupuestosTable extends Migration
             $table->foreign('referencia')->references("id")->on("presupuesto_ordinarios")
             ->onUpdate('cascade');
             $table->float('movimiento');
-            $table->integer("credito_adicional")->unsigned();
-            $table->foreign("credito_adicional")->references("id")->on("credito_adicionals")
-            ->onUpdate('cascade');
+            $table->integer("tipo");
             $table->date("fecha");
             $table->timestamps();
         });

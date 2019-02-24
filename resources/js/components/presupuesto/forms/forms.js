@@ -5,11 +5,8 @@ import Modal from '../../modal';
 import { handleChange, requestOptions } from '../actions/formsAction'
 import { openModal,closeModal } from '../../utilidadAction'
 const mapStateToProps = (state) => ({
-    // data: state.formsPresupuesto.data,
     form: state.formsPresupuesto.form,
     fields: state.formsPresupuesto.fields,
-    selectModel: state.formsPresupuesto.selectModel,
-
 });
 
        
@@ -27,10 +24,10 @@ class Form extends Component {
 		}
 	}
 	componentWillMount(){
-		this.props.requestOptions(this.props.fields[this.props.selectModel].fields,this.props.selectModel)
+		this.props.requestOptions(this.props.keyData.fields,this.props.keyData.key)
 	}
 	searchOption(e){
-		this.props.requestOptions(this.props.fields[this.props.selectModel].fields,this.props.selectModel,e.target.value)
+		this.props.requestOptions(this.props.keyData.fields,this.props.keyData.key,e.target.value)
 	}
 	openModal(title,id){
 		this.setState({modal:{title:title,id:id}})
@@ -45,15 +42,14 @@ class Form extends Component {
        		handleSubmit,
        		handleChange,
        		form,
-       		fields,
-       		selectModel,
+       		keyData,
       	} = this.props
       	
         return (
             <form onSubmit={handleSubmit}>
 			
 		      {
-		      	fields[selectModel].fields.map((e,i)=>(
+		      	keyData.fields.map((e,i)=>(
 		      		<div className="form-group" key={i}>
   						<label>{e.label}</label>
 		      			{

@@ -19,18 +19,38 @@ class CreatePersonalsTable extends Migration
             $table->string("nombre");
             $table->string("apellido");
             $table->integer("cedula")->unique();
-            $table->string("nacionalidad");
-            $table->string("genero");
+            $table->string("nacionalidad")->index();
+            $table->foreign('nacionalidad')->references('valor')->on('sno_valores_personals')
+            ->onUpdate('cascade');
+            $table->string("genero")->index();
+            $table->foreign('genero')->references('valor')->on('sno_valores_personals')
+            ->onUpdate('cascade');
+            $table->string("estado_civil")->index();
+            $table->foreign('estado_civil')->references('valor')->on('sno_valores_personals')
+            ->onUpdate('cascade');
+            $table->text("direccion");
             $table->string("fecha_nacimiento");
             $table->string("telefono_1");
             $table->string("telefono_2");
-            $table->string("correo")->unique();
-            $table->string("categoria");
-            $table->string("cargo");
-            $table->string("dedicacion");
-            $table->string("estado");
-            $table->string("estatus");
-            $table->string("grado_instruccion");
+            $table->string("correo");
+            $table->string("categoria")->index();
+            $table->foreign('categoria')->references('valor')->on('sno_valores_personals')
+            ->onUpdate('cascade');
+            $table->string("cargo")->index();
+            $table->foreign('cargo')->references('valor')->on('sno_valores_personals')
+            ->onUpdate('cascade');
+            $table->string("dedicacion")->index();
+            $table->foreign('dedicacion')->references('valor')->on('sno_valores_personals')
+            ->onUpdate('cascade');
+            $table->string("estado")->index();
+            $table->foreign('estado')->references('valor')->on('sno_valores_personals')
+            ->onUpdate('cascade');
+            $table->string("estatus")->index();
+            $table->foreign('estatus')->references('valor')->on('sno_valores_personals')
+            ->onUpdate('cascade');
+            $table->string("grado_instruccion")->index();
+            $table->foreign('grado_instruccion')->references('valor')->on('sno_valores_personals')
+            ->onUpdate('cascade');
             $table->string("fecha_ingreso");
             $table->boolean("caja_ahorro");
             $table->string("cuenta_bancaria");
@@ -39,9 +59,15 @@ class CreatePersonalsTable extends Migration
             $table->integer("hrs_feriadas");
             $table->integer("hrs_diurnas");
             $table->integer("hrs_feriadas_nocturnas");
-            $table->string("profesion");
-            $table->string("departamento_adscrito");
-            $table->string("cargo_desempeñado_departamento");
+            $table->string("profesion")->index();
+            $table->foreign('profesion')->references('valor')->on('sno_valores_personals')
+            ->onUpdate('cascade');
+            $table->string("departamento_adscrito")->index();
+            $table->foreign('departamento_adscrito')->references('valor')->on('sno_valores_personals')
+            ->onUpdate('cascade');
+            $table->string("cargo_departamento")->index();
+            $table->foreign('cargo_departamento')->references('valor')->on('sno_valores_personals')
+            ->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -45,7 +45,7 @@
 			         <i class="fa fa-calculator fa-2x"></i> Presupuesto
 			        </a>
 			        <div class="dropdown-menu">
-			         <a class="dropdown-item" href="/presupuesto/">Inicio</a>
+			         <a class="dropdown-item" href="/presupuesto">Inicio</a>
 			        </div>
 			      </li>
 			    </ul>

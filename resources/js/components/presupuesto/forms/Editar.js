@@ -8,7 +8,6 @@ import { openNotificacion,finishNotificacion } from '../../utilidadAction'
 
 const mapStateToProps = (state) => ({
     fields: state.formsPresupuesto.fields,
-    selectModel: state.formsPresupuesto.selectModel,
     form: state.formsPresupuesto.form,
     data: state.formsPresupuesto.data,
     selectItem: state.formsPresupuesto.selectItem,
@@ -18,30 +17,27 @@ const mapStateToProps = (state) => ({
 export class Editar extends Component {
 	constructor(){
 		super()
-		this.editar = this.editar.bind(this)
+		this.submit = this.submit.bind(this)
 	}
 	componentDidMount(){
 		this.props.modoEditFun()
 	}
-	editar(e){
-		let uriSelect = this.props.fields[this.props.selectModel].uri
+	submit(e){
 		e.preventDefault()
 		const { 
 			openNotificacion,
 			finishNotificacion,
-			deleteFun,
-			selectItemFun,
 			read,
-			fields,
 			data,
-			selectModel,
+			keyData,
 			selectItem,
 			form,
 			update
     	} = this.props
+		let uriSelect = keyData.uri
 
 		openNotificacion()
-		let id = data[selectItem][fields[selectModel].primary]
+		let id = data[selectItem][keyData.primary]
 
 		update(uriSelect,id,form,(res)=>{
 			read(uriSelect)
@@ -50,17 +46,18 @@ export class Editar extends Component {
     }
     render() {
         const {
-            action
+			notificacion,
+			keyData
         } = this.props;
 
         return (
         	<React.Fragment>
 	        	<Notificacion 
-					cargando={this.props.notificacion.cargando} 
-					active={this.props.notificacion.active} 
-					color={this.props.notificacion.color} 
-					msj={this.props.notificacion.msj}/>
-	            <Forms handleSubmit={this.editar}/>
+					cargando={notificacion.cargando} 
+					active={notificacion.active} 
+					color={notificacion.color} 
+					msj={notificacion.msj}/>
+	            <Forms handleSubmit={this.submit} keyData={keyData}/>
 	        </React.Fragment>
         );
     }

@@ -15,7 +15,7 @@ const initialState = {
 		apellido:"",
 		caja_ahorro:"",
 		cargo:"",
-		cargo_desempeñado_departamento:"",
+		cargo_departamento:"",
 		categoria:"",
 		cedula:"",
 		correo:"",

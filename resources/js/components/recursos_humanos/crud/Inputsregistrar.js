@@ -94,7 +94,7 @@ class Inputsregistrar extends Component{
 		
 		const {editUser,valores_globales} = this.props
 		
-		const {categoria_vg,grado_instruccion_vg,estado_vg,estatus_vg,nacionalidad_vg,profesion_vg,departamento_adscrito_vg,cargo_desempeñado_departamento_vg} = valores_globales
+		const {categoria_vg,grado_instruccion_vg,estado_vg,estatus_vg,nacionalidad_vg,profesion_vg,departamento_adscrito_vg,cargo_departamento_vg} = valores_globales
 
 		const form_class = "form-control form-control-lg"
 		
@@ -123,7 +123,7 @@ class Inputsregistrar extends Component{
 			grado_instruccion,
 			profesion,
 			departamento_adscrito,
-			cargo_desempeñado_departamento,
+			cargo_departamento,
 			hijos,
 		} = editUser
 		
@@ -279,14 +279,14 @@ class Inputsregistrar extends Component{
 						</div>
 
 						<div className="form-group">
-						    <label htmlFor="cargo_desempeñado_departamento">Cargo desempeñado en el departamento</label>
+						    <label htmlFor="cargo_departamento">Cargo desempeñado en el departamento</label>
 						  	 <select 
 						  	 	className={form_class} 
-						  	 	name="cargo_desempeñado_departamento"
+						  	 	name="cargo_departamento"
 						  	    onChange={this.onChange}
-						  	    value={cargo_desempeñado_departamento}>
+						  	    value={cargo_departamento}>
 						  	 	<option></option>
-							    {iterador(cargo_desempeñado_departamento_vg)}
+							    {iterador(cargo_departamento_vg)}
 							</select>
 						</div>
 					</div>

@@ -1,66 +1,86 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link, Route, Switch, Router } from 'react-router-dom'
+import { NavLink, Route, Link } from 'react-router-dom'
 		 
 import { selectItemFun,read } from '../actions/formsAction'	    
-
+import Vermas from './Vermas';
+import Registrar from './Registrar';
+import Editar from './Editar';
 
 const mapStateToProps = (state) => ({
     data: state.formsPresupuesto.data,
     selectItem: state.formsPresupuesto.selectItem,
-    selectModel: state.formsPresupuesto.selectModel,
     fields: state.formsPresupuesto.fields,
 });
 
 
 
 class handle extends Component {
+	componentWillMount(){
+		const {selectItemFun,read,keyData,fields} = this.props
+		selectItemFun(null)
+		read(keyData.uri)
+	}
     render() {
-
+		const {selectItemFun,read,keyData,fields,data,selectItem,match} = this.props
         return (
         	<div className="container-fluid h-100">
         		<div className="row h-100">
         			<div className="col table-responsive">
         				<div className="p-3">
 		        			{
-		        				this.props.selectModel!==null
-		        				?<span className="h1">{this.props.fields[this.props.selectModel].nombre}</span>
+		        				keyData
+		        				?<span className="h1">{keyData.nombre}</span>
 		        				:null
 		        			}
 		        		</div>
-        				{this.props.children}
+						<Route 
+							path={`${match.url}/vermas`} 
+							render={props=><Vermas {...props} keyData={keyData}/>}
+						/>
+						<Route 
+							path={`${match.url}/registrar`} 
+							render={props=><Registrar {...props} keyData={keyData}/>}
+						/>
+						<Route 
+							path={`${match.url}/editar`} 
+							render={props=><Editar {...props} keyData={keyData}/>}
+						/>
         			</div>
         			<div className="col-3 table-responsive">
-        				<Link to="registrar">
-        					<button className="btn btn-primary btn-lg w-100 mb-2">Registrar</button>
-        				</Link>
+						<NavLink 
+						to={`${match.url}/registrar`}
+						activeClassName="btn btn-danger"
+						className="btn btn-primary btn-lg w-100 mb-2">
+							Registrar
+						</NavLink>
         				<input 
 	        				type="text" 
 	        				placeholder="Buscar..." 
 	        				onChange={
 	        					() => {
-		        					this.props.selectItemFun(null)
-		        					this.props.read(
-		        						this.props.fields[this.props.selectModel].uri+event.target.value
+		        					selectItemFun(null)
+		        					read(
+		        						keyData.uri+event.target.value
 		        					)
 		        				}
 	        				}
 	        				className="form-control" />
         				<ul className="list-group mt-2">
 							{
-								this.props.data.length
-								?this.props.data.map((e,i)=>
+								data.length
+								?data.map((e,i)=>
 									<Link 
 									key={i} 
-									to="vermas"
+									to={`${match.url}/vermas`}
 									className={
-										i===this.props.selectItem
+										i===selectItem
 										? "list-group-item pointer active"
 										: "list-group-item pointer"
 									}
 									onClick={
 										() => {
-											this.props.selectItemFun(i);
+											selectItemFun(i);
 										}
 									}>
 										<h5>{Object.values(e)[0]}</h5>

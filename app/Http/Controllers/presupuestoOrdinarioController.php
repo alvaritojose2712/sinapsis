@@ -14,7 +14,7 @@ class presupuestoOrdinarioController extends Controller
      */
    public function index()
     {
-       return Presupuesto_ordinario::all();
+       return Presupuesto_ordinario::with('uno_uno_especifica')->get()->take(30);
     }
 
     /**
@@ -58,11 +58,14 @@ class presupuestoOrdinarioController extends Controller
      */
     public function show($id)
     {
-        return Presupuesto_ordinario::where("partida","LIKE","$id%")
-            ->orWhere("ae","LIKE","$id%")
+        return Presupuesto_ordinario::with('uno_uno_especifica')
+            ->where("partida","LIKE","$id%")
+            ->orWhereIn("ae",function($q) use ($id){
+                $q->from("acciones_especificas")->where("nombre","LIKE","$id%")->select("id");
+            })
             ->orWhere("denominacion","LIKE","$id%")
             ->orWhere("id","LIKE","$id%")
-            ->get();
+            ->get()->take(30);
     }
 
     /**

@@ -9,7 +9,6 @@ import { openNotificacion,finishNotificacion } from '../../utilidadAction'
 
 const mapStateToProps = (state) => ({
     fields: state.formsPresupuesto.fields,
-    selectModel: state.formsPresupuesto.selectModel,
     form: state.formsPresupuesto.form,
     notificacion: state.utilidad.notificacion,
 });
@@ -20,13 +19,14 @@ export class Registrar extends Component {
 		this.submit = this.submit.bind(this)
 	}
 	submit(e){
-		let uriSelect = this.props.fields[this.props.selectModel].uri
+		const {form,selectItemFun,read,finishNotificacion,create,openNotificacion,keyData} = this.props
+		let uriSelect = keyData.uri
 		e.preventDefault()
-		this.props.openNotificacion()
-		this.props.create(uriSelect,this.props.form,(res)=>{
-			this.props.selectItemFun(null)
-			this.props.read(uriSelect)
-			this.props.finishNotificacion(res)
+		openNotificacion()
+		create(uriSelect,form,(res)=>{
+			selectItemFun(null)
+			read(uriSelect)
+			finishNotificacion(res)
 		})
     }
     componentWillMount(){
@@ -34,22 +34,23 @@ export class Registrar extends Component {
     }
     render() {
         const {
-            action
-        } = this.props;
+			notificacion,
+			keyData
+        } = this.props
 
         return (
         	<React.Fragment>
 	        	<Notificacion 
-					cargando={this.props.notificacion.cargando} 
-					active={this.props.notificacion.active} 
-					color={this.props.notificacion.color} 
-					msj={this.props.notificacion.msj}/>
+					cargando={notificacion.cargando} 
+					active={notificacion.active} 
+					color={notificacion.color} 
+					msj={notificacion.msj}/>
 				<div className="p-2 text-center">
 					<span className="h3">
 						Registrar datos
 					</span>
 				</div>
-	            <Forms handleSubmit={this.submit}/>
+	            <Forms handleSubmit={this.submit} keyData={keyData}/>
 	        </React.Fragment>
         );
     }

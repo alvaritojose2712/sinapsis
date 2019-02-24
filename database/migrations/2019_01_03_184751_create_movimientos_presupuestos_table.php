@@ -19,8 +19,7 @@ class CreateMovimientosPresupuestosTable extends Migration
             $table->increments('id');
             $table->text('descripcion');
             $table->integer('referencia')->unsigned();
-            $table->foreign('referencia')->references("id")->on("presupuesto_ordinarios")
-            ->onUpdate('cascade');
+            $table->foreign('referencia')->references("id")->on("presupuesto_ordinarios")->onUpdate('cascade');
             $table->float('movimiento');
             $table->integer("tipo");
             $table->date("fecha");

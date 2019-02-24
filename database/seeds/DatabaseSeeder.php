@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            CamposSeeder::class, 
+            ValoresPersonalSeeder::class, 
             Personal::class,
             Hijos_personalSeeder::class,
             Acciones_proyectosSeeder::class,
@@ -19,6 +21,16 @@ class DatabaseSeeder extends Seeder
             Acciones_especificasSeeder::class,
             Presupuesto_ordinarioSeeder::class,
             Movimientos_presupuestariosSeeder::class,
+            
+            SueldosSeeder::class, 
+            UnidadTrubutariaSeeder::class, 
+            PrestacionesSeeder::class, 
+            FormulasSeeder::class, 
+            NominaSeeder::class, 
+            FormulasAsignadasSeeder::class, 
+            IncluirExcluirSeeder::class, 
+            CondicionesSeeder::class, 
+
             
         ]);
 

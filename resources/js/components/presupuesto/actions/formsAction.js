@@ -83,12 +83,3 @@ export const requestOptions = (fields,modelId,q="") => dispatch =>{
 	
 
 }
-
-
-export const selectModelFun = (val,callback) => dispatch =>{
-	dispatch({
-    	type:"SELECT_MODEL",
-    	payload:val
-    });
-    callback(val)
-}

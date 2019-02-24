@@ -33,7 +33,7 @@ class personal extends Model
             "hrs_feriadas_nocturnas",
             "profesion",
             "departamento_adscrito",
-            "cargo_desempeñado_departamento",
+            "cargo_departamento",
         ];
     public function hijos() { 
         return $this->hasMany('sinapsis\hijos_personal',"cedula_representante","cedula"); 

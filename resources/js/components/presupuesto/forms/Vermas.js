@@ -10,7 +10,6 @@ const mapStateToProps = (state) => ({
     data: state.formsPresupuesto.data,
     selectItem: state.formsPresupuesto.selectItem,
     fields: state.formsPresupuesto.fields,
-    selectModel: state.formsPresupuesto.selectModel,
     notificacion: state.utilidad.notificacion,
 });
 
@@ -22,9 +21,8 @@ export class Vermas extends Component {
 	}
 
     onDelete(){
-		let uriSelect = this.props.fields[this.props.selectModel].uri
-
-    	const { 
+		
+		const { 
 			openNotificacion,
 			finishNotificacion,
 			deleteFun,
@@ -32,12 +30,13 @@ export class Vermas extends Component {
 			read,
 			fields,
 			data,
-			selectModel,
+			keyData,
 			selectItem
     	} = this.props
-
+		let uriSelect = keyData.uri
+		
 		if(confirm("¿Desea eliminar?")){
-			let id = data[selectItem][fields[selectModel].primary]
+			let id = data[selectItem][keyData.primary]
 			openNotificacion()
 			deleteFun(uriSelect,id,(res)=>{
 				
@@ -53,16 +52,17 @@ export class Vermas extends Component {
             selectItem,
 			data,
 			fields,
-			selectModel,
+			keyData,
+			notificacion
         } = this.props;
 
         return (
 			<div>
 				<Notificacion 
-					cargando={this.props.notificacion.cargando} 
-					active={this.props.notificacion.active} 
-					color={this.props.notificacion.color} 
-					msj={this.props.notificacion.msj}/>
+					cargando={notificacion.cargando} 
+					active={notificacion.active} 
+					color={notificacion.color} 
+					msj={notificacion.msj}/>
 		        {
 					selectItem!==null
 					? (	
@@ -82,7 +82,7 @@ export class Vermas extends Component {
 								Object.entries(data[selectItem]).map((e,i)=>
 								<h5 key={i} className="list-group-item">
 									<b>{
-										fields[selectModel].traducciones[e[0]]
+										keyData.traducciones[e[0]]
 									}</b>
 									<br/>
 									{

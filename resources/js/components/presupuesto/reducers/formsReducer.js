@@ -4,6 +4,7 @@ const defaultState = {
     selectItem:null,
     fields: {
 		partidas:{
+            key:"partidas",
             nombre: "Partidas presupuestarias",
 			fields:[
 				{ name:"codigo", type:"text", placeholder: "Código de la partida", label:"Código de la partida", keypress:(e)=>{
@@ -24,6 +25,7 @@ const defaultState = {
             primary: "codigo",
 		},
         AccionesProyectos:{
+            key:"AccionesProyectos",
             nombre: "Acciones y/o Proyectos",
             fields:[
                 { name:"nombre", type:"text", placeholder: "Nombre de la acción y/o proyecto", label:"Nombre de la acción y/o proyecto" },
@@ -54,6 +56,7 @@ const defaultState = {
         },
 
         AccionesEspecificas:{
+            key:"AccionesEspecificas",
             nombre: "Acciones específicas",
             fields:[
                 { name:"nombre", type:"text", placeholder: "Nombre de la acción específica", label:"Nombre de la acción específica" },
@@ -80,6 +83,7 @@ const defaultState = {
             primary: "id",
         },
         PresupuestoOrdinario:{
+            key:"PresupuestoOrdinario",
             nombre: "Presupuesto Ordinario",
             fields:[
                 { name:"denominacion", type:"text", placeholder: "Denominación", label:"Denominación" },
@@ -106,6 +110,7 @@ const defaultState = {
                 denominacion: "Denominación",
                 partida: "Partida",
                 fecha: "Fecha",
+                monto: "Monto",
                 ae: "Acción específica",
                 created_at: "Fecha de creación",
                 updated_at: "Fecha de actualización",
@@ -114,6 +119,7 @@ const defaultState = {
             primary: "id",
         },
         MovimientosPresupuestarios:{
+            key:"MovimientosPresupuestarios",
             nombre: "Movimientos presupuestarios",
             fields:[
                 { name:"movimiento", type:"text", placeholder: "Monto", label:"Monto"},
@@ -172,11 +178,6 @@ const formReducer = (state = defaultState, {type,payload}) => {
             return {
                 ...state,
                 selectItem:payload
-            };
-        case "SELECT_MODEL":
-            return {
-                ...state,
-                selectModel:payload
             };
         case "MODO_EDIT":
             return {

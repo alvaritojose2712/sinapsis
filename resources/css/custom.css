@@ -65,3 +65,9 @@ table{
 input[type="text"]{
 	border-radius: 5px;
 }
+.inline{
+	display: inline-block;
+}
+.blanco{
+	background-color: #fff;
+}

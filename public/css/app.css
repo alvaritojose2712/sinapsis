@@ -64,6 +64,12 @@ table{
 }
 input[type="text"]{
 	border-radius: 5px;
+}
+.inline{
+	display: inline-block;
+}
+.blanco{
+	background-color: #fff;
 }@charset "UTF-8";
 
 @font-face {

@@ -44,7 +44,7 @@ class Vermas extends Component{
 			grado_instruccion,
 			profesion,
 			departamento_adscrito,
-			cargo_desempeñado_departamento,
+			cargo_departamento,
 			hrs_diurnas,
 			hrs_nocturnas,
 			hrs_feriadas,
@@ -176,7 +176,7 @@ class Vermas extends Component{
 						</tr>
 						<tr>
 							<th>Cargo desenpeñado en el departamento</th>
-							<td title="cargo_desempeñado_departamento">{cargo_desempeñado_departamento}</td>
+							<td title="cargo_departamento">{cargo_departamento}</td>
 						</tr>
 						<tr>
 							<th>Horas Extras-Diurnas</th>

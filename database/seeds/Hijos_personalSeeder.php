@@ -17,13 +17,13 @@ class Hijos_personalSeeder extends Seeder
             'fecha_nacimiento_hijo' => "2010-09-09",
             'estudiante_hijo' => "0",
             'discapacidad_hijo' => "0",
-            'cedula_representante' => "26767116"],
+            'cedula_representante' => "9868006"],
             ['genero_hijo' => "Femenino",
             'nombres_apellidos_hijo' => "Mariangela",
             'fecha_nacimiento_hijo' => "2014-09-09",
             'estudiante_hijo' => "0",
             'discapacidad_hijo' => "0",
-            'cedula_representante' => "26767116"],
+            'cedula_representante' => "9868006"],
         ]);
     }
 }

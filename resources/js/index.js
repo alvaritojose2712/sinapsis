@@ -12,9 +12,8 @@ class Index extends Component{
 			<Router>
 				<Switch>
 					<Route path='/recursoshumanos/personal/' component={Recursoshumanoscrud}/>
-					<Route path='/presupuesto/' component={Presupuesto}/>
+					<Route path='/presupuesto' component={Presupuesto}/>
 				</Switch>
-				
 			</Router>
 		);
 	}

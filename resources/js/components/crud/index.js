@@ -10,8 +10,6 @@ import {PartidasComponent,MovimientosComponent} from './formsVistas';
 import Alert from 'react-s-alert';
 import Modal from 'react-responsive-modal';
 
- 
-
 export default class Crud extends Component {
     constructor(){
         super()

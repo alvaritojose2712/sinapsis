@@ -2,10 +2,10 @@
 
 namespace sinapsis\Http\Controllers;
 
-use sinapsis\sno_incluir_excluir;
+use sinapsis\Divisiones_global;
 use Illuminate\Http\Request;
 
-class SnoIncluirExcluirController extends Controller
+class DivisionesGlobalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class SnoIncluirExcluirController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \sinapsis\sno_incluir_excluir  $sno_incluir_excluir
+     * @param  \sinapsis\Divisiones_global  $divisiones_global
      * @return \Illuminate\Http\Response
      */
-    public function show(sno_incluir_excluir $sno_incluir_excluir)
+    public function show(Divisiones_global $divisiones_global)
     {
         //
     }
@@ -52,10 +52,10 @@ class SnoIncluirExcluirController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \sinapsis\sno_incluir_excluir  $sno_incluir_excluir
+     * @param  \sinapsis\Divisiones_global  $divisiones_global
      * @return \Illuminate\Http\Response
      */
-    public function edit(sno_incluir_excluir $sno_incluir_excluir)
+    public function edit(Divisiones_global $divisiones_global)
     {
         //
     }
@@ -64,10 +64,10 @@ class SnoIncluirExcluirController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \sinapsis\sno_incluir_excluir  $sno_incluir_excluir
+     * @param  \sinapsis\Divisiones_global  $divisiones_global
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, sno_incluir_excluir $sno_incluir_excluir)
+    public function update(Request $request, Divisiones_global $divisiones_global)
     {
         //
     }
@@ -75,10 +75,10 @@ class SnoIncluirExcluirController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \sinapsis\sno_incluir_excluir  $sno_incluir_excluir
+     * @param  \sinapsis\Divisiones_global  $divisiones_global
      * @return \Illuminate\Http\Response
      */
-    public function destroy(sno_incluir_excluir $sno_incluir_excluir)
+    public function destroy(Divisiones_global $divisiones_global)
     {
         //
     }

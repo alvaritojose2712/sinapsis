@@ -59,7 +59,7 @@ const Especifica = ({data,id,OnMovimientos}) => (
                                 <tr 
                                 className="pointer">
                                     <td className="fit align-middle text-primary">
-                                        {formatPartida(ee.partida.codigo)}
+                                        {formatPartida(ee.partida)}
                                     </td>
                                     <th className="text-right" colSpan="3" onClick={()=>OnMovimientos(id,ii)}>
                                         <SumLeyCreditos data={ee}/>																			

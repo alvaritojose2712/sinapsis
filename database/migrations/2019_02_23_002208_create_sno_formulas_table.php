@@ -25,6 +25,8 @@ class CreateSnoFormulasTable extends Migration
             $table->string('partida')->index();
             $table->foreign("partida")->references("codigo")->on("partidas_presupuestarias")
             ->onUpdate('cascade');
+            $table->date('fecha');
+            
             $table->timestamps();
         });
     }

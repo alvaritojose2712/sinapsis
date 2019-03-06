@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import Cleave from 'cleave.js/react';
 import { getValoresGlobales ,editUserInputs } from './actions/busquedaActions';
 
 class Inputsregistrar extends Component{
@@ -93,8 +94,6 @@ class Inputsregistrar extends Component{
 		}
 		
 		const {editUser,valores_globales} = this.props
-		
-		const {categoria_vg,grado_instruccion_vg,estado_vg,estatus_vg,nacionalidad_vg,profesion_vg,departamento_adscrito_vg,cargo_departamento_vg} = valores_globales
 
 		const form_class = "form-control form-control-lg"
 		
@@ -156,13 +155,20 @@ class Inputsregistrar extends Component{
 					  	<hr/>
 					  	<div className="form-group">
 						    <label htmlFor="cedula">Cédula de identidad</label>
-						    <input 
-						    type="text" 
+								<Cleave 
+									options={{
+										numeral:true,
+										delimiter:"",
+										maxLength:8
+									}}
+									type="text" 
+									maxLength="8"
 						    className={form_class} 
 						    name="cedula" 
 						    value={cedula}
 						    onChange={this.onChange}
-						    placeholder="Cédula de identidad" maxLength="8" required/>
+								placeholder="Cédula de identidad"
+								required/>
 						</div>
 						 
 						 <div className="form-group">
@@ -173,7 +179,7 @@ class Inputsregistrar extends Component{
 						  	 	value={nacionalidad}
 						  	 	onChange={this.onChange}>
 							  	<option></option>
-							    {iterador(nacionalidad_vg)}
+							    {valores_globales?valores_globales.filter(e=>e.campo==="nacionalidad").map((e,i)=><option key={i}>{e.valor}</option>):null}
 							</select>
 					  	</div>
 					  	<hr/>
@@ -184,17 +190,17 @@ class Inputsregistrar extends Component{
 						  	 	name="genero"
 						  	 	value={genero}
 						  	 	onChange={this.onChange}>
-						  	   <option></option>
-							   <option value="Masculino">Masculino</option>
-							   <option value="Femenino">Femenino</option>
-							   <option value="Otro">Otro</option>
+						  	  <option></option>
+									{valores_globales?valores_globales.filter(e=>e.campo==="genero").map((e,i)=><option key={i}>{e.valor}</option>):null}
 							</select>
 						</div>
 
 						<div className="form-group">
 						    <label htmlFor="fecha_nacimiento">Fecha de nacimiento</label>
-						    <input 
-						    type="date" 
+						    <Cleave 
+									options={{
+										date:true,
+								}}
 						    maxLength="10" 
 						    className={form_class} 
 						    placeholder="Fecha de nacimiento" 
@@ -260,10 +266,10 @@ class Inputsregistrar extends Component{
 						  	 <select 
 						  	 	className={form_class} 
 						  	 	name="profesion"  
-								onChange={this.onChange}
+									onChange={this.onChange}
 						  		value={profesion}>
 						  	 	<option></option>
-							    {iterador(profesion_vg)}
+									{valores_globales?valores_globales.filter(e=>e.campo==="profesion").map((e,i)=><option key={i}>{e.valor}</option>):null}
 							</select>
 						</div>
 						<div className="form-group">
@@ -274,7 +280,7 @@ class Inputsregistrar extends Component{
 						  	    onChange={this.onChange}
 						  	    value={departamento_adscrito}>
 						  	 	<option></option>
-							    {iterador(departamento_adscrito_vg)}
+									 {valores_globales?valores_globales.filter(e=>e.campo==="departamento_adscrito").map((e,i)=><option key={i}>{e.valor}</option>):null}
 							</select>
 						</div>
 
@@ -286,7 +292,7 @@ class Inputsregistrar extends Component{
 						  	    onChange={this.onChange}
 						  	    value={cargo_departamento}>
 						  	 	<option></option>
-							    {iterador(cargo_departamento_vg)}
+									{valores_globales?valores_globales.filter(e=>e.campo==="cargo_departamento").map((e,i)=><option key={i}>{e.valor}</option>):null}
 							</select>
 						</div>
 					</div>
@@ -299,7 +305,7 @@ class Inputsregistrar extends Component{
 						  	     	onChange={this.onChange}
 							  	 	value={estado}>
 							  	 	<option></option>
-								    {iterador(estado_vg)}
+										{valores_globales?valores_globales.filter(e=>e.campo==="estado").map((e,i)=><option key={i}>{e.valor}</option>):null}
 								</select>
 						  	</div>
 						  	<div className="form-group">
@@ -310,7 +316,7 @@ class Inputsregistrar extends Component{
 						  	     	onChange={this.onChange}
 							  	 	value={estatus}>
 							  	 	<option></option>
-								    {iterador(estatus_vg)}
+										 {valores_globales?valores_globales.filter(e=>e.campo==="estatus").map((e,i)=><option key={i}>{e.valor}</option>):null}
 								</select>
 						  	</div>
 						  	<div className="form-group">
@@ -321,7 +327,7 @@ class Inputsregistrar extends Component{
 						  	     	onChange={this.onChange}
 							  	 	value={grado_instruccion}>
 							  	 	<option></option>
-								    {iterador(grado_instruccion_vg)}
+										 {valores_globales?valores_globales.filter(e=>e.campo==="grado_instruccion").map((e,i)=><option key={i}>{e.valor}</option>):null}
 								</select>
 							</div>
 						  	<div className="form-group">
@@ -329,10 +335,10 @@ class Inputsregistrar extends Component{
 							  	 <select 
 							  	 	className={form_class} 
 							  	 	name="categoria" 
-						  	     	onChange={this.onChange}
+						  	    onChange={this.onChange}
 							  	 	value={categoria}>
 							  	 	<option></option>
-								     {iterador(categoria_vg)}
+										 {valores_globales?valores_globales.filter(e=>e.campo==="categoria").map((e,i)=><option key={i}>{e.valor}</option>):null}
 								</select>
 							</div>
 
@@ -344,9 +350,7 @@ class Inputsregistrar extends Component{
 						  	     	onChange={this.onChange}
 						  	     	value={dedicacion}>
 						  	     	<option></option>
-									{
-								   	 categoria&&categoria_vg?iterador(categoria_vg[categoria].dedicacion_vg):null
-								    }
+											{valores_globales?valores_globales.filter(e=>e.campo==="dedicacion").map((e,i)=><option key={i}>{e.valor}</option>):null}
 								</select>
 							</div>
 							<div className="form-group">
@@ -357,9 +361,7 @@ class Inputsregistrar extends Component{
 						  	     	onChange={this.onChange}
 						  	     	value={cargo}>
 						  	     	<option></option>
-							  	 	{
-								   	 categoria&&categoria_vg?iterador(categoria_vg[categoria].cargo_vg):null
-								    }
+											{valores_globales?valores_globales.filter(e=>e.campo==="cargo").map((e,i)=><option key={i}>{e.valor}</option>):null}
 								</select>
 						 	</div>	 
 						 	<div className="form-group">

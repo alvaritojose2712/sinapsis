@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSnoIncluirExcluirsTable extends Migration
+class CreateAdicPersonalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateSnoIncluirExcluirsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sno_incluir_excluirs', function (Blueprint $table) {
+        Schema::create('adic_personals', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("id_formula_asignada")->unsigned();
-            $table->foreign('id_formula_asignada')->references('id')->on('sno_formulas_asignadas')
+            $table->integer("id_nomina")->unsigned();
+            $table->foreign("id_nomina")
+            ->references('id')
+            ->on('sno_nominas')
             ->onUpdate('cascade');
-
             $table->integer('cedula')->index();
             $table->foreign('cedula')
             ->references('cedula')
@@ -36,6 +37,6 @@ class CreateSnoIncluirExcluirsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sno_incluir_excluirs');
+        Schema::dropIfExists('adic_personals');
     }
 }

@@ -28,10 +28,12 @@ class DatabaseSeeder extends Seeder
             FormulasSeeder::class, 
             NominaSeeder::class, 
             FormulasAsignadasSeeder::class, 
-            IncluirExcluirSeeder::class, 
-            CondicionesSeeder::class, 
-
-            
+            CondicionesFormulasSeeder::class, 
+            CondicionesNominaSeeder::class, 
+            AdicPersonal::class, 
+            AdicFormula::class, 
+            DivisionesGlobalSeeder::class, 
+            DivisionesFormulasSeeder::class, 
         ]);
 
         

@@ -11,6 +11,20 @@ class FormulasAsignadasSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table("sno_formulas_asignadas")->insert([
+            [   
+                "id_nomina" => 1,
+                "id_formula" => 1,
+            ],[   
+                "id_nomina" => 1,
+                "id_formula" => 2,
+            ],[   
+                "id_nomina" => 1,
+                "id_formula" => 3,
+            ],[   
+                "id_nomina" => 1,
+                "id_formula" => 4,
+            ],
+        ]);
     }
 }

@@ -11,6 +11,11 @@ class UnidadTrubutariaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Illuminate\Support\Facades\DB::table("sno_unidad_tributarias")->insert([
+            [
+                'fecha_inicio' => "2019-01-01",
+                'valor' => "3",
+            ]
+        ]);
     }
 }

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CondicionesSeeder extends Seeder
+class AdicPersonal extends Seeder
 {
     /**
      * Run the database seeds.

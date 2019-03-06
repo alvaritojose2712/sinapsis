@@ -28,5 +28,7 @@ Route::resource('/presupuesto/acciones_proyectos', "accionesProyectosController"
 Route::resource('/presupuesto/presupuesto_ordinario', "presupuestoOrdinarioController");
 Route::resource('/presupuesto/credito_adicional', "creditoAdicionalController");
 
+Route::resource('/global/valores', "SnoValoresPersonalController");
+Auth::routes();
 
-
+Route::get('/home', 'HomeController@index')->name('home');

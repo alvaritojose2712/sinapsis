@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import { connect } from 'react-redux'
 import { buscarPersonal } from './actions/busquedaActions';
-import Notificacion from '../../notificacion';
+import Alert from 'react-s-alert';
 
 import {diffFecha,formatCedula} from '../../formats';
 
@@ -15,7 +15,12 @@ class Vermas extends Component{
 			axios
 			.delete(`/recursoshumanos/personalController/${id}`)
 		    .then(res=>{
-		        if (res.data.code=="200") this.props.buscarPersonal()
+					if(res.data.code==200){
+						Alert.success(res.data.msj);
+						this.props.buscarPersonal()
+					}else{
+							Alert.error(res.data.msj);
+					}
 		    })
 		}
 	}
@@ -70,8 +75,8 @@ class Vermas extends Component{
 			<div>
 				<span>
 					<h1>
+						<span title="apellido"><b>{apellido}</b>, </span>
 						<span title="nombre">{nombre}</span> 
-						<span title="apellido"> {apellido}</span>
 					</h1>
 				</span>
 			</div>

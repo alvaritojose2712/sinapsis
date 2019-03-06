@@ -2,10 +2,10 @@
 
 namespace sinapsis\Http\Controllers;
 
-use sinapsis\sno_condiciones;
+use sinapsis\Divisiones_formula;
 use Illuminate\Http\Request;
 
-class SnoCondicionesController extends Controller
+class DivisionesFormulaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class SnoCondicionesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \sinapsis\sno_condiciones  $sno_condiciones
+     * @param  \sinapsis\Divisiones_formula  $divisiones_formula
      * @return \Illuminate\Http\Response
      */
-    public function show(sno_condiciones $sno_condiciones)
+    public function show(Divisiones_formula $divisiones_formula)
     {
         //
     }
@@ -52,10 +52,10 @@ class SnoCondicionesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \sinapsis\sno_condiciones  $sno_condiciones
+     * @param  \sinapsis\Divisiones_formula  $divisiones_formula
      * @return \Illuminate\Http\Response
      */
-    public function edit(sno_condiciones $sno_condiciones)
+    public function edit(Divisiones_formula $divisiones_formula)
     {
         //
     }
@@ -64,10 +64,10 @@ class SnoCondicionesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \sinapsis\sno_condiciones  $sno_condiciones
+     * @param  \sinapsis\Divisiones_formula  $divisiones_formula
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, sno_condiciones $sno_condiciones)
+    public function update(Request $request, Divisiones_formula $divisiones_formula)
     {
         //
     }
@@ -75,10 +75,10 @@ class SnoCondicionesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \sinapsis\sno_condiciones  $sno_condiciones
+     * @param  \sinapsis\Divisiones_formula  $divisiones_formula
      * @return \Illuminate\Http\Response
      */
-    public function destroy(sno_condiciones $sno_condiciones)
+    public function destroy(Divisiones_formula $divisiones_formula)
     {
         //
     }

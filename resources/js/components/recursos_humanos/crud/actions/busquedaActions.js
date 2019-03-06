@@ -25,7 +25,7 @@ const selectPersonal = (index) => dispatch => {
 	})
 }
 const getValoresGlobales = () => dispatch => {
-	axios.get("/valores_globales.json")
+	axios.get("/global/valores")
 	.then(res=>{
 		dispatch({
 			type: GET_VALORES_GLOBALES,

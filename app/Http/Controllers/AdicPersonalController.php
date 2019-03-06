@@ -2,10 +2,10 @@
 
 namespace sinapsis\Http\Controllers;
 
-use sinapsis\sno_valores_personal;
+use sinapsis\Adic_personal;
 use Illuminate\Http\Request;
 
-class SnoValoresPersonalController extends Controller
+class AdicPersonalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class SnoValoresPersonalController extends Controller
      */
     public function index()
     {
-        return sno_valores_personal::all();
+        //
     }
 
     /**
@@ -41,10 +41,10 @@ class SnoValoresPersonalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \sinapsis\sno_valores_personal  $sno_valores_personal
+     * @param  \sinapsis\Adic_personal  $adic_personal
      * @return \Illuminate\Http\Response
      */
-    public function show(sno_valores_personal $sno_valores_personal)
+    public function show(Adic_personal $adic_personal)
     {
         //
     }
@@ -52,10 +52,10 @@ class SnoValoresPersonalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \sinapsis\sno_valores_personal  $sno_valores_personal
+     * @param  \sinapsis\Adic_personal  $adic_personal
      * @return \Illuminate\Http\Response
      */
-    public function edit(sno_valores_personal $sno_valores_personal)
+    public function edit(Adic_personal $adic_personal)
     {
         //
     }
@@ -64,10 +64,10 @@ class SnoValoresPersonalController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \sinapsis\sno_valores_personal  $sno_valores_personal
+     * @param  \sinapsis\Adic_personal  $adic_personal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, sno_valores_personal $sno_valores_personal)
+    public function update(Request $request, Adic_personal $adic_personal)
     {
         //
     }
@@ -75,10 +75,10 @@ class SnoValoresPersonalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \sinapsis\sno_valores_personal  $sno_valores_personal
+     * @param  \sinapsis\Adic_personal  $adic_personal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(sno_valores_personal $sno_valores_personal)
+    public function destroy(Adic_personal $adic_personal)
     {
         //
     }

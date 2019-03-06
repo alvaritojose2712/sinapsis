@@ -4,7 +4,7 @@ namespace sinapsis;
 
 use Illuminate\Database\Eloquent\Model;
 
-class sno_condiciones extends Model
+class Divisiones_formula extends Model
 {
     //
 }

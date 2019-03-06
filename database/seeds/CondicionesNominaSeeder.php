@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class NominaSeeder extends Seeder
+class CondicionesNominaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,12 +11,11 @@ class NominaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table("sno_nominas")->insert([
+        DB::table("sno_condiciones_nominas")->insert([
             [   
                 "id" => 1,
-                "denominacion" => "Súper nómina",
-                "fecha" => "2019-01-01",
-                "periodo" => "Mensual",
+                "valor" => "DOCENTE",
+                "id_nomina" => 1,
             ]
         ]);
     }

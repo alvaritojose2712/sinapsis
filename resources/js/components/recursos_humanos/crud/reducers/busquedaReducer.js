@@ -9,7 +9,7 @@ import {
 const initialState = {
 	personals: [],
 	persona: null,
-	valores_globales: {},
+	valores_globales: [],
 	editUser: {
 		antiguedad_otros_ieu:"",
 		apellido:"",

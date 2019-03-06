@@ -114136,18 +114136,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store */ "./resources/js/components/store.js");
-/* harmony import */ var _partidas_partidasIndex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./partidas/partidasIndex */ "./resources/js/components/presupuesto/partidas/partidasIndex.js");
-/* harmony import */ var _acciones_proyectos_accionProyectosIndex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./acciones_proyectos/accionProyectosIndex */ "./resources/js/components/presupuesto/acciones_proyectos/accionProyectosIndex.js");
-/* harmony import */ var _forms___WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./forms/ */ "./resources/js/components/presupuesto/forms/index.js");
-/* harmony import */ var _crud___WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../crud/ */ "./resources/js/components/crud/index.js");
-/* harmony import */ var react_s_alert__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-s-alert */ "./node_modules/react-s-alert/index.js");
-/* harmony import */ var react_s_alert__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_s_alert__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var react_s_alert_dist_s_alert_default_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-s-alert/dist/s-alert-default.css */ "./node_modules/react-s-alert/dist/s-alert-default.css");
-/* harmony import */ var react_s_alert_dist_s_alert_default_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_s_alert_dist_s_alert_default_css__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var react_s_alert_dist_s_alert_css_effects_slide_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-s-alert/dist/s-alert-css-effects/slide.css */ "./node_modules/react-s-alert/dist/s-alert-css-effects/slide.css");
-/* harmony import */ var react_s_alert_dist_s_alert_css_effects_slide_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_s_alert_dist_s_alert_css_effects_slide_css__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _partidas_partidasIndex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./partidas/partidasIndex */ "./resources/js/components/presupuesto/partidas/partidasIndex.js");
+/* harmony import */ var _acciones_proyectos_accionProyectosIndex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./acciones_proyectos/accionProyectosIndex */ "./resources/js/components/presupuesto/acciones_proyectos/accionProyectosIndex.js");
+/* harmony import */ var _forms___WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./forms/ */ "./resources/js/components/presupuesto/forms/index.js");
+/* harmony import */ var _crud___WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../crud/ */ "./resources/js/components/crud/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -114175,11 +114167,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
-
-
-
-
 var Presupuesto =
 /*#__PURE__*/
 function (_Component) {
@@ -114195,9 +114182,7 @@ function (_Component) {
     key: "render",
     value: function render() {
       var match = this.props.match;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__["Provider"], {
-        store: _store__WEBPACK_IMPORTED_MODULE_3__["default"]
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row h-100"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "h-100 col col-md-auto p-0"
@@ -114238,18 +114223,18 @@ function (_Component) {
         className: "container-fluid h-100 flex"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "".concat(match.url, "/partidas/:partida?"),
-        component: _partidas_partidasIndex__WEBPACK_IMPORTED_MODULE_4__["default"]
+        component: _partidas_partidasIndex__WEBPACK_IMPORTED_MODULE_2__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "".concat(match.url, "/acciones_proyectos"),
-        component: _acciones_proyectos_accionProyectosIndex__WEBPACK_IMPORTED_MODULE_5__["default"]
+        component: _acciones_proyectos_accionProyectosIndex__WEBPACK_IMPORTED_MODULE_3__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "".concat(match.url, "/forms"),
-        component: _forms___WEBPACK_IMPORTED_MODULE_6__["default"]
+        component: _forms___WEBPACK_IMPORTED_MODULE_4__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "".concat(match.url, "/crud"),
         render: function render(props) {
           return (// <Crud {...props} resource="/presupuesto/partidas/" primary="codigo" model="partidas" title="Partidas presupuestarias"/>
-            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_crud___WEBPACK_IMPORTED_MODULE_7__["default"], _extends({}, props, {
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_crud___WEBPACK_IMPORTED_MODULE_5__["default"], _extends({}, props, {
               resource: "/presupuesto/movimientos_presupuestarios/",
               primary: "id",
               model: "movimientos",
@@ -114257,12 +114242,7 @@ function (_Component) {
             }))
           );
         }
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_s_alert__WEBPACK_IMPORTED_MODULE_8___default.a, {
-        stack: false,
-        timeout: 5000,
-        position: "bottom",
-        effect: "slide"
-      }));
+      }))));
     }
   }]);
 
@@ -114337,7 +114317,7 @@ var Especifica = function Especifica(_ref) {
       className: "pointer"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
       className: "fit align-middle text-primary"
-    }, Object(_formats__WEBPACK_IMPORTED_MODULE_2__["formatPartida"])(ee.partida.codigo)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    }, Object(_formats__WEBPACK_IMPORTED_MODULE_2__["formatPartida"])(ee.partida)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
       className: "text-right",
       colSpan: "3",
       onClick: function onClick() {
@@ -115923,7 +115903,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_busquedaActions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions/busquedaActions */ "./resources/js/components/recursos_humanos/crud/actions/busquedaActions.js");
+/* harmony import */ var cleave_js_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! cleave.js/react */ "./node_modules/cleave.js/react.js");
+/* harmony import */ var cleave_js_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(cleave_js_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _actions_busquedaActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./actions/busquedaActions */ "./resources/js/components/recursos_humanos/crud/actions/busquedaActions.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
@@ -115945,6 +115927,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 
 
 
@@ -116088,14 +116071,6 @@ function (_Component) {
       var _this$props2 = this.props,
           editUser = _this$props2.editUser,
           valores_globales = _this$props2.valores_globales;
-      var categoria_vg = valores_globales.categoria_vg,
-          grado_instruccion_vg = valores_globales.grado_instruccion_vg,
-          estado_vg = valores_globales.estado_vg,
-          estatus_vg = valores_globales.estatus_vg,
-          nacionalidad_vg = valores_globales.nacionalidad_vg,
-          profesion_vg = valores_globales.profesion_vg,
-          departamento_adscrito_vg = valores_globales.departamento_adscrito_vg,
-          cargo_departamento_vg = valores_globales.cargo_departamento_vg;
       var form_class = "form-control form-control-lg";
       var nombre = editUser.nombre,
           apellido = editUser.apellido,
@@ -116160,14 +116135,19 @@ function (_Component) {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "cedula"
-      }, "C\xE9dula de identidad"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "C\xE9dula de identidad"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(cleave_js_react__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        options: {
+          numeral: true,
+          delimiter: "",
+          maxLength: 8
+        },
         type: "text",
+        maxLength: "8",
         className: form_class,
         name: "cedula",
         value: cedula,
         onChange: this.onChange,
         placeholder: "C\xE9dula de identidad",
-        maxLength: "8",
         required: true
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
@@ -116178,7 +116158,13 @@ function (_Component) {
         name: "nacionalidad",
         value: nacionalidad,
         onChange: this.onChange
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), iterador(nacionalidad_vg))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), valores_globales ? valores_globales.filter(function (e) {
+        return e.campo === "nacionalidad";
+      }).map(function (e, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          key: i
+        }, e.valor);
+      }) : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "genero"
@@ -116187,18 +116173,20 @@ function (_Component) {
         name: "genero",
         value: genero,
         onChange: this.onChange
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "Masculino"
-      }, "Masculino"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "Femenino"
-      }, "Femenino"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-        value: "Otro"
-      }, "Otro"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), valores_globales ? valores_globales.filter(function (e) {
+        return e.campo === "genero";
+      }).map(function (e, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          key: i
+        }, e.valor);
+      }) : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "fecha_nacimiento"
-      }, "Fecha de nacimiento"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "date",
+      }, "Fecha de nacimiento"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(cleave_js_react__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        options: {
+          date: true
+        },
         maxLength: "10",
         className: form_class,
         placeholder: "Fecha de nacimiento",
@@ -116267,7 +116255,13 @@ function (_Component) {
         name: "profesion",
         onChange: this.onChange,
         value: profesion
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), iterador(profesion_vg))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), valores_globales ? valores_globales.filter(function (e) {
+        return e.campo === "profesion";
+      }).map(function (e, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          key: i
+        }, e.valor);
+      }) : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "departamento_adscrito"
@@ -116276,16 +116270,28 @@ function (_Component) {
         name: "departamento_adscrito",
         onChange: this.onChange,
         value: departamento_adscrito
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), iterador(departamento_adscrito_vg))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), valores_globales ? valores_globales.filter(function (e) {
+        return e.campo === "departamento_adscrito";
+      }).map(function (e, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          key: i
+        }, e.valor);
+      }) : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "cargo_desempe\xF1ado_departamento"
+        htmlFor: "cargo_departamento"
       }, "Cargo desempe\xF1ado en el departamento"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         className: form_class,
-        name: "cargo_desempe\xF1ado_departamento",
+        name: "cargo_departamento",
         onChange: this.onChange,
         value: cargo_departamento
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), iterador(cargo_departamento_vg)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), valores_globales ? valores_globales.filter(function (e) {
+        return e.campo === "cargo_departamento";
+      }).map(function (e, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          key: i
+        }, e.valor);
+      }) : null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
@@ -116296,7 +116302,13 @@ function (_Component) {
         name: "estado",
         onChange: this.onChange,
         value: estado
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), iterador(estado_vg))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), valores_globales ? valores_globales.filter(function (e) {
+        return e.campo === "estado";
+      }).map(function (e, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          key: i
+        }, e.valor);
+      }) : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "estatus"
@@ -116305,7 +116317,13 @@ function (_Component) {
         name: "estatus",
         onChange: this.onChange,
         value: estatus
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), iterador(estatus_vg))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), valores_globales ? valores_globales.filter(function (e) {
+        return e.campo === "estatus";
+      }).map(function (e, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          key: i
+        }, e.valor);
+      }) : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "grado_instruccion"
@@ -116314,7 +116332,13 @@ function (_Component) {
         name: "grado_instruccion",
         onChange: this.onChange,
         value: grado_instruccion
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), iterador(grado_instruccion_vg))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), valores_globales ? valores_globales.filter(function (e) {
+        return e.campo === "grado_instruccion";
+      }).map(function (e, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          key: i
+        }, e.valor);
+      }) : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "categoria"
@@ -116323,7 +116347,13 @@ function (_Component) {
         name: "categoria",
         onChange: this.onChange,
         value: categoria
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), iterador(categoria_vg))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), valores_globales ? valores_globales.filter(function (e) {
+        return e.campo === "categoria";
+      }).map(function (e, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          key: i
+        }, e.valor);
+      }) : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "dedicacion"
@@ -116332,7 +116362,13 @@ function (_Component) {
         name: "dedicacion",
         onChange: this.onChange,
         value: dedicacion
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), categoria && categoria_vg ? iterador(categoria_vg[categoria].dedicacion_vg) : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), valores_globales ? valores_globales.filter(function (e) {
+        return e.campo === "dedicacion";
+      }).map(function (e, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          key: i
+        }, e.valor);
+      }) : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "cargo"
@@ -116341,7 +116377,13 @@ function (_Component) {
         name: "cargo",
         onChange: this.onChange,
         value: cargo
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), categoria && categoria_vg ? iterador(categoria_vg[categoria].cargo_vg) : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null), valores_globales ? valores_globales.filter(function (e) {
+        return e.campo === "cargo";
+      }).map(function (e, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          key: i
+        }, e.valor);
+      }) : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "fecha_ingreso"
@@ -116583,8 +116625,8 @@ var mapStateProps = function mapStateProps(state) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateProps, {
-  getValoresGlobales: _actions_busquedaActions__WEBPACK_IMPORTED_MODULE_2__["getValoresGlobales"],
-  editUserInputs: _actions_busquedaActions__WEBPACK_IMPORTED_MODULE_2__["editUserInputs"]
+  getValoresGlobales: _actions_busquedaActions__WEBPACK_IMPORTED_MODULE_3__["getValoresGlobales"],
+  editUserInputs: _actions_busquedaActions__WEBPACK_IMPORTED_MODULE_3__["editUserInputs"]
 })(Inputsregistrar));
 
 /***/ }),
@@ -116842,7 +116884,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_busquedaActions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./actions/busquedaActions */ "./resources/js/components/recursos_humanos/crud/actions/busquedaActions.js");
-/* harmony import */ var _notificacion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../notificacion */ "./resources/js/components/notificacion.js");
+/* harmony import */ var react_s_alert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-s-alert */ "./node_modules/react-s-alert/index.js");
+/* harmony import */ var react_s_alert__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_s_alert__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _formats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../formats */ "./resources/js/components/formats.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -116889,7 +116932,13 @@ function (_Component) {
 
       if (confirm("Confirme la eliminación")) {
         axios.delete("/recursoshumanos/personalController/".concat(id)).then(function (res) {
-          if (res.data.code == "200") _this.props.buscarPersonal();
+          if (res.data.code == 200) {
+            react_s_alert__WEBPACK_IMPORTED_MODULE_4___default.a.success(res.data.msj);
+
+            _this.props.buscarPersonal();
+          } else {
+            react_s_alert__WEBPACK_IMPORTED_MODULE_4___default.a.error(res.data.msj);
+          }
         });
       }
     }
@@ -116947,10 +116996,10 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-trash"
       }), " Eliminar"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        title: "nombre"
-      }, nombre), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         title: "apellido"
-      }, " ", apellido)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, apellido), ", "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        title: "nombre"
+      }, nombre)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "text-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("code", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         title: "nacionalidad"
@@ -117021,7 +117070,7 @@ function (_Component) {
         title: "departamento_adscrito",
         className: "text-info"
       }, departamento_adscrito)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Cargo desenpe\xF1ado en el departamento"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-        title: "cargo_desempe\xF1ado_departamento"
+        title: "cargo_departamento"
       }, cargo_departamento)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Horas Extras-Diurnas"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
         title: "hrs_diurnas"
       }, hrs_diurnas)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "Horas Extras-Nocturnas"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
@@ -117102,7 +117151,7 @@ var selectPersonal = function selectPersonal(index) {
 
 var getValoresGlobales = function getValoresGlobales() {
   return function (dispatch) {
-    axios.get("/valores_globales.json").then(function (res) {
+    axios.get("/global/valores").then(function (res) {
       dispatch({
         type: _actions_types__WEBPACK_IMPORTED_MODULE_0__["GET_VALORES_GLOBALES"],
         payload: res.data
@@ -117166,33 +117215,13 @@ var EMPTY_EDITUSER = "EMPTY_EDITUSER";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Recursoshumanoscrud; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store */ "./resources/js/components/store.js");
-/* harmony import */ var _Busqueda__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Busqueda */ "./resources/js/components/recursos_humanos/crud/Busqueda.js");
-/* harmony import */ var _Vermas__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Vermas */ "./resources/js/components/recursos_humanos/crud/Vermas.js");
-/* harmony import */ var _Editar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Editar */ "./resources/js/components/recursos_humanos/crud/Editar.js");
-/* harmony import */ var _Registrar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Registrar */ "./resources/js/components/recursos_humanos/crud/Registrar.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+/* harmony import */ var _Busqueda__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Busqueda */ "./resources/js/components/recursos_humanos/crud/Busqueda.js");
+/* harmony import */ var _Vermas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Vermas */ "./resources/js/components/recursos_humanos/crud/Vermas.js");
+/* harmony import */ var _Editar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Editar */ "./resources/js/components/recursos_humanos/crud/Editar.js");
+/* harmony import */ var _Registrar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Registrar */ "./resources/js/components/recursos_humanos/crud/Registrar.js");
 
 
 
@@ -117200,56 +117229,34 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+var Recursoshumanoscrud = function Recursoshumanoscrud() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row h-100"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-3 text-white table-responsive bg-light rounded h-100"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "mb-2 mt-2"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+    to: "/recursoshumanos/personal/registrar",
+    activeClassName: "btn-danger",
+    className: "btn btn-outline-danger btn-lg btn-block"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa fa-plus"
+  }), " Incluir nuevo personal")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Busqueda__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col table-responsive bg-light rounded h-100"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/recursoshumanos/personal/registrar",
+    component: _Registrar__WEBPACK_IMPORTED_MODULE_5__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/recursoshumanos/personal/editar",
+    component: _Editar__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/recursoshumanos/personal/vermas",
+    component: _Vermas__WEBPACK_IMPORTED_MODULE_3__["default"]
+  })));
+};
 
-
-
-var Recursoshumanoscrud =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Recursoshumanoscrud, _Component);
-
-  function Recursoshumanoscrud() {
-    _classCallCheck(this, Recursoshumanoscrud);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Recursoshumanoscrud).apply(this, arguments));
-  }
-
-  _createClass(Recursoshumanoscrud, [{
-    key: "render",
-    value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__["Provider"], {
-        store: _store__WEBPACK_IMPORTED_MODULE_3__["default"]
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row h-100"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-3 text-white table-responsive bg-light rounded"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "mb-2 mt-2"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/recursoshumanos/personal/registrar",
-        className: "btn btn-outline-danger btn-lg btn-block"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-plus"
-      }), " Incluir nuevo personal")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Busqueda__WEBPACK_IMPORTED_MODULE_4__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col table-responsive bg-light rounded"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-        path: "/recursoshumanos/personal/registrar",
-        component: _Registrar__WEBPACK_IMPORTED_MODULE_7__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-        path: "/recursoshumanos/personal/editar",
-        component: _Editar__WEBPACK_IMPORTED_MODULE_6__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-        path: "/recursoshumanos/personal/vermas",
-        component: _Vermas__WEBPACK_IMPORTED_MODULE_5__["default"]
-      }))));
-    }
-  }]);
-
-  return Recursoshumanoscrud;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-
-;
+/* harmony default export */ __webpack_exports__["default"] = (Recursoshumanoscrud);
 
 /***/ }),
 
@@ -117279,7 +117286,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var initialState = {
   personals: [],
   persona: null,
-  valores_globales: {},
+  valores_globales: [],
   editUser: {
     antiguedad_otros_ieu: "",
     apellido: "",
@@ -117608,9 +117615,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-/* harmony import */ var _components_recursos_humanos_crud___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/recursos_humanos/crud/ */ "./resources/js/components/recursos_humanos/crud/index.js");
-/* harmony import */ var _components_presupuesto___WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/presupuesto/ */ "./resources/js/components/presupuesto/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var react_s_alert__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-s-alert */ "./node_modules/react-s-alert/index.js");
+/* harmony import */ var react_s_alert__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_s_alert__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _components_recursos_humanos_crud___WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/recursos_humanos/crud/ */ "./resources/js/components/recursos_humanos/crud/index.js");
+/* harmony import */ var _components_presupuesto___WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/presupuesto/ */ "./resources/js/components/presupuesto/index.js");
+/* harmony import */ var _components_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/store */ "./resources/js/components/store.js");
+/* harmony import */ var react_s_alert_dist_s_alert_default_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-s-alert/dist/s-alert-default.css */ "./node_modules/react-s-alert/dist/s-alert-default.css");
+/* harmony import */ var react_s_alert_dist_s_alert_default_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_s_alert_dist_s_alert_default_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var react_s_alert_dist_s_alert_css_effects_slide_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-s-alert/dist/s-alert-css-effects/slide.css */ "./node_modules/react-s-alert/dist/s-alert-css-effects/slide.css");
+/* harmony import */ var react_s_alert_dist_s_alert_css_effects_slide_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_s_alert_dist_s_alert_css_effects_slide_css__WEBPACK_IMPORTED_MODULE_9__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -117635,6 +117650,11 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+
+
+
 var Index =
 /*#__PURE__*/
 function (_Component) {
@@ -117649,13 +117669,20 @@ function (_Component) {
   _createClass(Index, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_2__["Provider"], {
+        store: _components_store__WEBPACK_IMPORTED_MODULE_7__["default"]
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
         path: "/recursoshumanos/personal/",
-        component: _components_recursos_humanos_crud___WEBPACK_IMPORTED_MODULE_3__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        component: _components_recursos_humanos_crud___WEBPACK_IMPORTED_MODULE_5__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
         path: "/presupuesto",
-        component: _components_presupuesto___WEBPACK_IMPORTED_MODULE_4__["default"]
-      })));
+        component: _components_presupuesto___WEBPACK_IMPORTED_MODULE_6__["default"]
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_s_alert__WEBPACK_IMPORTED_MODULE_4___default.a, {
+        stack: false,
+        timeout: 5000,
+        position: "bottom",
+        effect: "slide"
+      }));
     }
   }]);
 

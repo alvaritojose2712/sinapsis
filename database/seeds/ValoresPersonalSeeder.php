@@ -97,7 +97,9 @@ class ValoresPersonalSeeder extends Seeder
 
             ["valor"=>"Masculino","campo"=>"genero"],
             ["valor"=>"Femenino","campo"=>"genero"],
-
+            
+            ["valor"=>0,"campo"=>"boolean"],
+            ["valor"=>1,"campo"=>"boolean"],
         ]);
     }
 }

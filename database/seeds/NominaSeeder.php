@@ -14,7 +14,13 @@ class NominaSeeder extends Seeder
         DB::table("sno_nominas")->insert([
             [   
                 "id" => 1,
-                "denominacion" => "Súper nómina",
+                "denominacion" => "Súper nómina Masculino",
+                "fecha" => "2019-01-01",
+                "periodo" => "Mensual",
+            ],
+            [   
+                "id" => 2,
+                "denominacion" => "Nómina de bonos",
                 "fecha" => "2019-01-01",
                 "periodo" => "Mensual",
             ]

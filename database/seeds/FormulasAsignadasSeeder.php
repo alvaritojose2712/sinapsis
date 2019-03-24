@@ -24,6 +24,14 @@ class FormulasAsignadasSeeder extends Seeder
             ],[   
                 "id_nomina" => 1,
                 "id_formula" => 4,
+            ]
+            ,[   
+                "id_nomina" => 2,
+                "id_formula" => 19,
+            ]
+            ,[   
+                "id_nomina" => 2,
+                "id_formula" => 21,
             ],
         ]);
     }

@@ -20,7 +20,8 @@ class CreateDivisionesFormulasTable extends Migration
             $table->foreign("id_formula_asig")
             ->references('id')
             ->on('sno_formulas_asignadas')
-            ->onUpdate('cascade');
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
            
             $table->integer("id_division")->unsigned();
             $table->foreign("id_division")

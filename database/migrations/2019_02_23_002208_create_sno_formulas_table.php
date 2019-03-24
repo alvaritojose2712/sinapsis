@@ -15,18 +15,14 @@ class CreateSnoFormulasTable extends Migration
     {
         Schema::create('sno_formulas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('formula');
-            $table->string('formula_aporte')->default("NULL");
+            $table->string('descripcion',255)->unique();
             $table->string('tipo_concepto');
             $table->string('tipo_sueldo');
             $table->string('movimiento');
             $table->integer('dias');
-            $table->text('descripcion');
             $table->string('partida')->index();
             $table->foreign("partida")->references("codigo")->on("partidas_presupuestarias")
             ->onUpdate('cascade');
-            $table->date('fecha');
-            
             $table->timestamps();
         });
     }

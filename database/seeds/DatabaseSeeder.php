@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             Presupuesto_ordinarioSeeder::class,
             Movimientos_presupuestariosSeeder::class,
             
+            SnoTablasSueldos::class, 
             SueldosSeeder::class, 
             UnidadTrubutariaSeeder::class, 
             PrestacionesSeeder::class, 
@@ -34,6 +35,7 @@ class DatabaseSeeder extends Seeder
             AdicFormula::class, 
             DivisionesGlobalSeeder::class, 
             DivisionesFormulasSeeder::class, 
+            FormulasVersionesSeeder::class,
         ]);
 
         

@@ -19,6 +19,7 @@ class CreateAdicPersonalsTable extends Migration
             $table->foreign("id_nomina")
             ->references('id')
             ->on('sno_nominas')
+            ->onDelete('cascade')
             ->onUpdate('cascade');
             $table->integer('cedula')->index();
             $table->foreign('cedula')
@@ -26,6 +27,7 @@ class CreateAdicPersonalsTable extends Migration
             ->on('personals')
             ->onDelete('cascade')
             ->onUpdate('cascade');
+            $table->boolean("incluir_excluir"); //1=Incluir 0=Excluir
             $table->timestamps();
         });
     }

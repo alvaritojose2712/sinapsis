@@ -25,6 +25,9 @@ class CreateSnoCondicionesFormulasTable extends Migration
             ->references("id")
             ->on("sno_formulas")
             ->onUpdate("cascade");
+            $table->string("operador",10);
+            $table->boolean("type")->default(0);
+            $table->string("campo",25)->default("");
             $table->timestamps();
         });
     }

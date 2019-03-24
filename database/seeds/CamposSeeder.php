@@ -24,6 +24,7 @@ class CamposSeeder extends Seeder
             ["campo"=>"cargo_departamento"],
             ["campo"=>"estado_civil"],
             ["campo"=>"genero"],
+            ["campo"=>"boolean"],
         ]);
     }
 }

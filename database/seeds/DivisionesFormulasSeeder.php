@@ -19,6 +19,33 @@ class DivisionesFormulasSeeder extends Seeder
             [   
                 "id_formula_asig" => 1,
                 "id_division" => 2,
+            ],
+
+            [   
+                "id_formula_asig" => 2,
+                "id_division" => 1,
+            ],
+            [   
+                "id_formula_asig" => 2,
+                "id_division" => 2,
+            ],
+
+            [   
+                "id_formula_asig" => 3,
+                "id_division" => 1,
+            ],
+            [   
+                "id_formula_asig" => 3,
+                "id_division" => 2,
+            ],
+
+            [   
+                "id_formula_asig" => 4,
+                "id_division" => 1,
+            ],
+            [   
+                "id_formula_asig" => 4,
+                "id_division" => 2,
             ]
         ]);
     }

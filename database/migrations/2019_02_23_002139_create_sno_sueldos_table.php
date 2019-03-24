@@ -31,7 +31,11 @@ class CreateSnoSueldosTable extends Migration
             ->on('sno_valores_personals')
             ->onUpdate('cascade');
             $table->decimal('salario',10,2);
-            $table->date('fecha');
+            $table->integer('id_tabla')->unsigned();
+            $table->foreign('id_tabla')
+            ->references("id")
+            ->on("sno_tablas_sueldos")
+            ->onUpdate("cascade");
             $table->timestamps();
         });
     }

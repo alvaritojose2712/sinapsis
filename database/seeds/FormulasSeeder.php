@@ -39,7 +39,9 @@ class FormulasSeeder extends Seeder
 [24, 'UTRIBUTARIA*30*61', 'NULL', 'bono alimentacion', 'sueldo basico', 'asignacion', '30', 'CestaTicket', '2017-09-01'],
 [25, '((SUELDONORMAL*12)/52)*0.09*LUNES', '((SUELDONORMAL*12)/52)*0.09*LUNES', 'aporte_patronal', 'aporte_patronal', 'aporte_patronal', '30', 'Seguro social Aporte', '2017-09-01'],
 [26, 'SUELDO*0.06', 'SUELDO*0.06', 'aporte_patronal', 'aporte_patronal', 'aporte_patronal', '30', 'IPASME Aporte', '2017-09-01'],
-        ];
+[27, '3000', 'NULL', 'NULL', 'NULL', 'NULL', '30', '3000 venta de pollo', '2017-09-01'],
+[28, '60%', 'NULL', 'NULL', 'NULL', 'NULL', '30', '60% del monto', '2017-09-01'],       
+];
         foreach($arrInsert as $valor){
             array_push($arr,[
                 'id' => $valor[0],

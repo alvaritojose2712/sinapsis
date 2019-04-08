@@ -17,21 +17,13 @@ class FormulasAsignadasSeeder extends Seeder
                 "id_formula" => 1,
             ],[   
                 "id_nomina" => 1,
+                "id_formula" => 27,
+            ],[   
+                "id_nomina" => 1,
                 "id_formula" => 2,
             ],[   
                 "id_nomina" => 1,
-                "id_formula" => 3,
-            ],[   
-                "id_nomina" => 1,
-                "id_formula" => 4,
-            ]
-            ,[   
-                "id_nomina" => 2,
-                "id_formula" => 19,
-            ]
-            ,[   
-                "id_nomina" => 2,
-                "id_formula" => 21,
+                "id_formula" => 28,
             ],
         ]);
     }

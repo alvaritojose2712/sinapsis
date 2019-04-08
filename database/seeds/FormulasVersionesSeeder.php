@@ -66,6 +66,8 @@ class FormulasVersionesSeeder extends Seeder
 [24, '0', '0', 'bono alimentacion', 'sueldo basico', 'asignacion', '30', 'CestaTicket', '1900-01-01'],
 [25, '0', '0', 'aporte_patronal', 'aporte_patronal', 'aporte_patronal', '30', 'Seguro social', '1900-01-01'],
 [26, '0', '0', 'aporte_patronal', 'aporte_patronal', 'aporte_patronal', '30', 'IPASME', '1900-01-01'],
+[27, '3000', '0', 'NULL', 'NULL', 'NULL', '30', '3000 venta de pollo', '2017-09-01'],
+[28, '60%', '0', 'NULL', 'NULL', 'NULL', '30', '60% del monto', '2017-09-01'],
 
 ];
         foreach($arrInsert as $valor){

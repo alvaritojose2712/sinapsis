@@ -12,11 +12,11 @@ class CondicionesNominaSeeder extends Seeder
     public function run()
     {
         DB::table("sno_condiciones_nominas")->insert([
-            [   
-                "id" => 1,
-                "valor" => "Masculino",
-                "id_nomina" => 1,
-            ]
+            // [   
+            //     "id" => 1,
+            //     "valor" => "Masculino",
+            //     "id_nomina" => 1,
+            // ]
         ]);
     }
 }

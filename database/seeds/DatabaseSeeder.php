@@ -28,14 +28,16 @@ class DatabaseSeeder extends Seeder
             PrestacionesSeeder::class, 
             FormulasSeeder::class, 
             NominaSeeder::class, 
+            FormulasVersionesSeeder::class,
             FormulasAsignadasSeeder::class, 
+            AdicFormula::class, 
             CondicionesFormulasSeeder::class, 
             CondicionesNominaSeeder::class, 
             AdicPersonal::class, 
-            AdicFormula::class, 
             DivisionesGlobalSeeder::class, 
             DivisionesFormulasSeeder::class, 
-            FormulasVersionesSeeder::class,
+            sno_tablas_sueldos_asignadoSeeder::class,
+            sno_ut_asignadaSeeder::class,
         ]);
 
         

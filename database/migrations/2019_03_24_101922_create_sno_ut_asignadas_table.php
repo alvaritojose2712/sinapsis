@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSnoFormulasAsignadasTable extends Migration
+class CreateSnoUtAsignadasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,22 +13,21 @@ class CreateSnoFormulasAsignadasTable extends Migration
      */
     public function up()
     {
-        Schema::create('sno_formulas_asignadas', function (Blueprint $table) {
+        Schema::create('sno_ut_asignadas', function (Blueprint $table) {
             $table->increments('id');
-
             $table->integer('id_nomina')->unsigned();
             $table->foreign('id_nomina')
             ->references('id')
             ->on('sno_nominas')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
-            
-            $table->integer('id_formula')->unsigned();
-            $table->foreign('id_formula')->references('id')
-            ->on('sno_formulas_versiones')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
 
+            $table->integer('id_ut')->unsigned();
+            $table->foreign('id_ut')
+            ->references('id')
+            ->on('sno_unidad_tributarias')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -40,6 +39,6 @@ class CreateSnoFormulasAsignadasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sno_formulas_asignadas');
+        Schema::dropIfExists('sno_ut_asignadas');
     }
 }

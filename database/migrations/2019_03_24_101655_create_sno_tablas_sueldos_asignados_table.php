@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdicFormulasTable extends Migration
+class CreateSnoTablasSueldosAsignadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,26 +13,22 @@ class CreateAdicFormulasTable extends Migration
      */
     public function up()
     {
-        Schema::create('adic_formulas', function (Blueprint $table) {
+        Schema::create('sno_tablas_sueldos_asignados', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer("id_nomina")->unsigned();
-            $table->foreign("id_nomina")
+            $table->integer('id_nomina')->unsigned();
+            $table->foreign('id_nomina')
             ->references('id')
             ->on('sno_nominas')
-            ->onUpdate('cascade');
-
-            $table->integer("id_formula")->unsigned();
-            $table->foreign("id_formula")
-            ->references('id')
-            ->on('sno_formulas')
-            ->onUpdate('cascade');
-
-            $table->integer('cedula')->index();
-            $table->foreign('cedula')
-            ->references('cedula')
-            ->on('personals')
             ->onDelete('cascade')
             ->onUpdate('cascade');
+            
+            $table->integer('id_tabla_sueldo')->unsigned();
+            $table->foreign('id_tabla_sueldo')
+            ->references('id')
+            ->on('sno_tablas_sueldos')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
@@ -44,6 +40,6 @@ class CreateAdicFormulasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adic_formulas');
+        Schema::dropIfExists('sno_tablas_sueldos_asignados');
     }
 }

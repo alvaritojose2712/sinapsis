@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Alert from 'react-s-alert';
 
 import Recursoshumanoscrud from './components/recursos_humanos/crud/';
+import Nominas from './components/recursos_humanos/nomina/';
 import Presupuesto from './components/presupuesto/';
 import store  from './components/store'
 
@@ -18,6 +19,7 @@ class Index extends Component{
 				<Router>
 					<Switch>
 						<Route path='/recursoshumanos/personal/' component={Recursoshumanoscrud}/>
+						<Route path='/recursoshumanos/nominas/' component={Nominas}/>
 						<Route path='/presupuesto' component={Presupuesto}/>
 					</Switch>
 				</Router>

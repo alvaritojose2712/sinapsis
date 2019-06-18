@@ -13,38 +13,46 @@ class DivisionesFormulasSeeder extends Seeder
     {
         DB::table("divisiones_formulas")->insert([
             [   
-                "id_formula_asig" => 1,
+                "id_nomina" => 1,
+                "id_formula" => 1,
                 "id_division" => 1,
             ],
             [   
-                "id_formula_asig" => 1,
+                "id_nomina" => 1,
+                "id_formula" => 1,
                 "id_division" => 2,
             ],
 
             [   
-                "id_formula_asig" => 2,
+                "id_nomina" => 1,
+                "id_formula" => 27,
                 "id_division" => 1,
             ],
             [   
-                "id_formula_asig" => 2,
+                "id_nomina" => 1,
+                "id_formula" => 27,
                 "id_division" => 2,
             ],
 
             [   
-                "id_formula_asig" => 3,
+                "id_nomina" => 1,
+                "id_formula" => 2,
                 "id_division" => 1,
             ],
             [   
-                "id_formula_asig" => 3,
+                "id_nomina" => 1,
+                "id_formula" => 2,
                 "id_division" => 2,
             ],
 
             [   
-                "id_formula_asig" => 4,
+                "id_nomina" => 1,
+                "id_formula" => 28,
                 "id_division" => 1,
             ],
             [   
-                "id_formula_asig" => 4,
+                "id_nomina" => 1,
+                "id_formula" => 28,
                 "id_division" => 2,
             ]
         ]);

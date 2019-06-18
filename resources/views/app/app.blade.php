@@ -37,7 +37,8 @@
 			          <i class="fa fa-users fa-2x"></i> Recursos Humanos
 			        </a>
 			        <div class="dropdown-menu">
-			         <a class="dropdown-item" href="/recursoshumanos/personal/">Personal</a>
+							 <a class="dropdown-item" href="/recursoshumanos/personal/">Personal</a>
+							 <a class="dropdown-item" href="/recursoshumanos/nomina/">Nómina</a>
 			        </div>
 			      </li>
 			      <li class="nav-item dropdown">

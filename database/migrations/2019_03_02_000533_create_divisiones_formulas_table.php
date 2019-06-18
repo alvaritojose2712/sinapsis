@@ -16,10 +16,16 @@ class CreateDivisionesFormulasTable extends Migration
         Schema::create('divisiones_formulas', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->integer("id_formula_asig")->unsigned();
-            $table->foreign("id_formula_asig")
+            $table->integer('id_nomina')->unsigned();
+            $table->foreign('id_nomina')
             ->references('id')
-            ->on('sno_formulas_asignadas')
+            ->on('sno_nominas')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            
+            $table->integer('id_formula')->unsigned();
+            $table->foreign('id_formula')->references('id')
+            ->on('sno_formulas_versiones')
             ->onUpdate('cascade')
             ->onDelete('cascade');
            

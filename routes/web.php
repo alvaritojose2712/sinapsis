@@ -12,6 +12,7 @@
 */
 
 Route::resource('/recursoshumanos/nominas', "SnoNominasController");
+
 Route::resource('/recursoshumanos/personalController', "personalController");
 Route::resource('/recursoshumanos/hijos_personal', "hijos_personal");
 Route::get('/recursoshumanos/personal', function(){

@@ -12,8 +12,11 @@ use sinapsis\sno_sueldos;
 use sinapsis\sno_tablas_sueldos;
 use sinapsis\sno_tablas_sueldos_asignado;
 use sinapsis\personal;
+
 use sinapsis\Adic_personal;
 use sinapsis\Adic_formula;
+use sinapsis\Divisiones_formula;
+
 use Illuminate\Http\Request;
 use \jlawrence\eos\Parser;
 class SnoNominasController extends Controller
@@ -209,7 +212,7 @@ class SnoNominasController extends Controller
      */
     public function index()
     {
-        return sno_nominas::all();
+        return view("recursos_humanos.nomina.index")->with('nominas',sno_nominas::all());
     }
 
     public function create()
@@ -236,10 +239,9 @@ class SnoNominasController extends Controller
     public function show($id)
     {
         
-        $this->inicio = "2017-04-01";
+        $this->inicio = "2018-01-20";
         $this->cierre = "2018-09-16";
 
-        
         /*
             _Variables_
             UTRIBUTARIA
@@ -250,39 +252,25 @@ class SnoNominasController extends Controller
             SUELDOINTEGRAL
             ANTIGUEDAD
 
+        
+            $condiciones = [
+                [
+                    "id_formula" => 1, 
+                    "valor" => ["valor"=>"ACTIVO","campo"=>"estado"], 
+                    "operador" => "igual"
+                ],
+                [
+                    "id_formula" => 1, 
+                    "valor" => ["valor"=>"JUBILADO","campo"=>"estado"], 
+                    "operador" => "igual"
+                ],
+            ];
+            $persona = [
+                "estado" => "JUBILAD",
+                "categoria" => "DOCENTE",
+                "estatus" => "CONTRATADO",
+            ];
         */
-        /*$condiciones = [
-            [
-                "id_formula" => 1, 
-                "valor" => ["valor"=>"ACTIVO","campo"=>"estado"], 
-                "operador" => "igual"
-            ],
-            [
-                "id_formula" => 1, 
-                "valor" => ["valor"=>"JUBILADO","campo"=>"estado"], 
-                "operador" => "igual"
-            ],
-            [
-                "id_formula" => 1, 
-                "valor" => ["valor"=>"DOCENTE","campo"=>"categoria"], 
-                "operador" => "igual"
-            ],
-            [
-                "id_formula" => 1, 
-                "valor" => ["valor"=>"FIJO","campo"=>"estatus"], 
-                "operador" => "igual"
-            ],
-            [
-                "id_formula" => 1, 
-                "valor" => ["valor"=>"CONTRATADO","campo"=>"estatus"], 
-                "operador" => "igual"
-            ]
-        ];
-        $persona = [
-            "estado" => "JUBILAD",
-            "categoria" => "DOCENTE",
-            "estatus" => "CONTRATADO",
-        ];*/
         
         $cierre = $this->cierre;
         $inicio = $this->inicio;
@@ -329,7 +317,7 @@ class SnoNominasController extends Controller
         ->orderByRaw("tipo_concepto='prima salarial' AND tipo_sueldo='sueldo basico' DESC")
         ->get();
         // return $formulas;
-        $divisionesFormulas = sno_formulas_asignadas::where("id_nomina",$id)->with("divisiones")->get();
+        $divisionesFormulas = Divisiones_formula::where("id_nomina",$id)->with("division")->get();
         // return $divisionesFormulas;
         
         $nomina = sno_nominas::with([
@@ -472,13 +460,18 @@ class SnoNominasController extends Controller
                             foreach ($vars as $replace => $valor) {
                                 $formula = str_replace($replace,$valor,$formula);
                             }
-                            //    echo $formula;
-                            $calc = eval('return '.$formula.';');
-                            
-                            if(!is_numeric($calc)){
-                                throw new \Exception("Error: Fórmula incorrecta -> id = ".$formula_version->id, 1);
+                            try {
+                                $calc = eval('return '.$formula.';');
+                                if(!is_numeric($calc)){
+                                    throw new \Exception();
+                                }
+                            } catch (\Throwable $th) {
+                                throw new \Exception("Error: Fórmula incorrecta -> id = ".$formula_version->id." valor -> ".$formula, 1);
                             }
+                            
+                            
                             $calc = ($calc/$diasF)*$arr_days[0];
+
                             // Sueldo normal
                             if (
                                 ($f->movimiento==="asignacion" && $f->tipo_concepto==="prima salarial") 
@@ -494,8 +487,27 @@ class SnoNominasController extends Controller
                             ) {
                                 $sueldoIntegral+=$calc/12;
                             }
+                            
+                            $division = [
+                                ["nombre" => "Total período", "monto" => $calc],
+                            ];
+                            $divisiones_formula = $divisionesFormulas->where("id_formula",$arr_days[3]);
+                            if(count($divisiones_formula)){
+                                
+                                $porcentaje = 0;
+                                foreach($divisiones_formula as $e){
+                                    $porcentaje += $e->division->porcentaje;
+                                    $result = $calc*($e->division->porcentaje/100);
+                                    array_push($division,["nombre" => $e->division->denominacion, "monto" => $result]);
+                                };
+
+                                if($porcentaje!=100){
+                                    throw new \Exception("Error: Divisiones de Fórmula -> id = ".$formula_version->id." debe sumar el 100%", 1);
+                                }
+                                
+                            };
                             array_push($versiones_recibo,[
-                                "monto" => $calc,
+                                "monto" => $division,
                                 "diasCorrespondientes" => $arr_days[0],
                                 "formula_id" => $formula_version->id,
                                 "formula_fecha" => $formula_version->fecha,
@@ -513,7 +525,7 @@ class SnoNominasController extends Controller
                                 "HRSFERIADASNOCTURNAS" => $hrs_feriadas_nocturnas,
                                 "ID_sueldo" => $arr_days[1],
                                 "ID_ut" => $arr_days[2],
-                                "ID_formulas" => $arr_days[3],
+                                "ID_formula" => $arr_days[3],
                             ]);
                         }
                         

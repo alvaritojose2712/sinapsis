@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
+import nomina from './recursos_humanos/nomina/reducers/nominaReducer';
 import busqueda from './recursos_humanos/crud/reducers/busquedaReducer';
 import partidas from './presupuesto/reducers/partidasReducer';
 import accionesProyectos from './presupuesto/reducers/accionesProyectosReducer';
@@ -12,4 +13,5 @@ export default combineReducers({
 	accionesProyectos: accionesProyectos,
 	formsPresupuesto: formsPresupuesto,
 	utilidad: utilidad,
+	nomina: nomina,
 })

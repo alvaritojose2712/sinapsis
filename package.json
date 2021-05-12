@@ -33,7 +33,7 @@
     "dependencies": {
         "@babel/core": "^7.2.2",
         "audit": "0.0.6",
-        "chart.js": "^2.7.3",
+        "chart.js": "^2.9.4",
         "cleave.js": "^1.4.7",
         "fix": "0.0.6",
         "font-awesome": "^4.7.0",
